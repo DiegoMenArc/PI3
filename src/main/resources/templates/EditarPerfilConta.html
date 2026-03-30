@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <style>
+        /* Importando a fonte Noto Sans para ficar idêntico ao Figma */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        body {
+            /* Dimensões baseadas na sua solicitação, mas com flexbox para centralizar dinamicamente */
+            width: 100vw;
+            min-height: 100vh;
+            background-color: #212328;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 24px;
+            color: #F2F3F5;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 768px; /* Mantém a largura do design original */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .previa-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #80848E;
+            margin-bottom: 8px;
+        }
+
+        /* --- CARD DE PERFIL --- */
+        .profile-card {
+            background-color: #111214;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .banner {
+            height: 100px;
+            background-color: #5865F2;
+        }
+
+        .profile-content {
+            position: relative;
+            padding: 16px;
+        }
+
+        .avatar-wrapper {
+            position: absolute;
+            top: -45px;
+            left: 16px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 6px solid #111214;
+            background-color: #18191C;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .status-indicator {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: #23A559;
+            border: 4px solid #111214;
+            border-radius: 50%;
+        }
+
+        .profile-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 105px; /* Espaço para não sobrepor o avatar */
+            height: 45px;
+        }
+
+        .username-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* --- CAIXA DE DETALHES --- */
+        .details-box {
+            background-color: #2B2D31;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #B5BAC1;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: #F2F3F5;
+        }
+
+        .link-text {
+            color: #00A8FC;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        /* --- SEÇÕES INFERIORES --- */
+        h2.section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        h3.block-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #B5BAC1;
+            margin-bottom: 8px;
+        }
+
+        p.description {
+            font-size: 14px;
+            color: #B5BAC1;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .setting-block {
+            margin-top: 24px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #3F4147;
+            border: none;
+            margin: 32px 0;
+        }
+
+        /* --- BOTÕES --- */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #5865F2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #4752C4;
+        }
+
+        .btn-secondary {
+            background-color: #4E5058;
+            color: white;
+            padding: 6px 12px; /* Ligeiramente menor para os botões "Editar" */
+        }
+
+        .btn-secondary:hover {
+            background-color: #6D6F78;
+        }
+
+        .btn-danger {
+            background-color: #DA373C;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #A12828;
+        }
+
+        .btn-outline-danger {
+            background-color: transparent;
+            color: #DA373C;
+            border: 1px solid transparent;
+        }
+
+        .btn-outline-danger:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="previa-label">Previa</div>
+
+    <div class="profile-card">
+        <div class="banner"></div>
+        <div class="profile-content">
+            <div class="avatar-wrapper">
+                <img class="avatar-img" src="https://placehold.co/90x90" alt="Avatar">
+                <div class="status-indicator"></div>
+            </div>
+
+            <div class="profile-header-info">
+                <span class="username-title">Adaylson</span>
+                <button class="btn btn-primary">Editar perfil de usuário</button>
+            </div>
+
+            <div class="details-box">
+                <div class="detail-row">
+                    <div class="detail-info">
+                        <span class="detail-label">Nome exibido</span>
+                        <span class="detail-value">Adaylson</span>
+                    </div>
+                    <button class="btn btn-secondary">Editar</button>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-info">
+                        <span class="detail-label">Nome de usuário</span>
+                        <span class="detail-value">Adaylson</span>
+                    </div>
+                    <button class="btn btn-secondary">Editar</button>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-info">
+                        <span class="detail-label">E-mail</span>
+                        <span class="detail-value">**********@email.com <a class="link-text">Mostrar</a></span>
+                    </div>
+                    <button class="btn btn-secondary">Editar</button>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-info">
+                        <span class="detail-label">Telefone</span>
+                        <span class="detail-value">Você ainda não adicionou um telefone.</span>
+                    </div>
+                    <button class="btn btn-secondary">Editar</button>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-info">
+                        <span class="detail-label">Grupo Etário</span>
+                        <span class="detail-value">Não confirmado</span>
+                    </div>
+                    <button class="btn btn-secondary">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Senha e autenticação</h2>
+    <div>
+        <button class="btn btn-primary">Mudar senha</button>
+    </div>
+
+    <div class="setting-block">
+        <h3 class="block-title">Aplicativo de Autenticação</h3>
+        <p class="description">Proteja sua conta com uma camada extra de segurança. Uma vez configurada, será necessário inserir sua senha e completar uma etapa adicional para poder entrar.</p>
+        <button class="btn btn-primary">Ativar o aplicativo de autenticação</button>
+    </div>
+
+    <div class="setting-block">
+        <h3 class="block-title">Chaves de segurança</h3>
+        <p class="description">Adicione uma camada extra de proteção à sua conta com uma Chave de Segurança.</p>
+        <button class="btn btn-primary">Registre uma Chave de Segurança</button>
+    </div>
+
+    <hr class="divider">
+
+    <h2 class="section-title">Remoção de conta</h2>
+    <p class="description">Desativar sua conta significa que você poderá recuperá-la quando quiser.</p>
+
+    <div class="button-group">
+        <button class="btn btn-danger">Desativar conta</button>
+        <button class="btn btn-outline-danger">Excluir conta</button>
+    </div>
+
+</div>
+
+</body>
+</html>

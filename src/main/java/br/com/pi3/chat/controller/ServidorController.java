@@ -11,9 +11,8 @@ public class ServidorController {
 
     @GetMapping("/produto/{id}")
     public String detalhesDoProduto(@PathVariable Long id) {
-        // Lógica para buscar informações do produto com o ID fornecido
-        //Testando commit
-        .findById(id);
+        // Lógica para buscar informações do produto com o ID fornecido oiiii
+
 
         // Passa os dados do produto para a visualização
 
