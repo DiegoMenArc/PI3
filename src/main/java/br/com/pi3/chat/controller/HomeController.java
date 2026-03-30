@@ -8,6 +8,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String Home() {
-        return "home"; // Retorna o nome do template
+        return "home/home"; // Retorna o nome do template
+    }
+
+    @GetMapping("/todos")
+    public String Todos(){
+        return "home/todosAmigos";
     }
 }

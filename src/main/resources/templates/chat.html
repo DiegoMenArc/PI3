@@ -5,80 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Clone - Chat com jesutoyosi</title>
     <link rel="stylesheet" href="/css/chat.css">
+    <link rel="stylesheet" href="/css/home.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
 <div class="app-container">
-
-    <aside class="sidebar">
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Procure um amigo">
-        </div>
-
-        <div class="sidebar-content">
-            <div class="nav-section">
-                <a href="#" class="nav-item active">
-                    <i class="fa-solid fa-user-group"></i>
-                    <span>Amigos</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fa-solid fa-bolt"></i>
-                    <span>Pedidos</span>
-                </a>
-            </div>
-
-            <div class="dm-section">
-                <div class="section-title">
-                    <span>CONVERSAS</span>
-                    <span class="add-dm-icon">+</span>
-                </div>
-
-                <ul class="dm-list">
-                    <li class="dm-item active">
-                        <div class="avatar-wrapper">
-                            <div class="avatar placeholder-1"></div>
-                            <div class="status-dot"></div>
-                        </div>
-                        <div class="info-wrapper">
-                            <span class="dm-name">jesutoyosi</span>
-                            <span class="dm-status">Playing devugger</span>
-                        </div>
-                    </li>
-
-                    <li class="dm-item">
-                        <div class="avatar-wrapper">
-                            <div class="avatar placeholder-2"></div>
-                        </div>
-                        <div class="info-wrapper">
-                            <span class="dm-name">Binary</span>
-                        </div>
-                    </li>
-
-                    <li class="dm-item"><div class="avatar-wrapper"><div class="avatar"></div></div><div class="info-wrapper"><span class="dm-name">Deak</span></div></li>
-                    <li class="dm-item"><div class="avatar-wrapper"><div class="avatar"></div></div><div class="info-wrapper"><span class="dm-name">MEEE</span><span class="dm-status">Playing devugger</span></div></li>
-                    <li class="dm-item"><div class="avatar-wrapper"><div class="avatar"></div></div><div class="info-wrapper"><span class="dm-name">Reaction Roles</span><span class="dm-status">Playing checkmy.gg | ^</span></div></li>
-                    <li class="dm-item"><div class="avatar-wrapper"><div class="avatar"></div></div><div class="info-wrapper"><span class="dm-name">TCS Bot</span><span class="dm-status">Listenning to building me</span></div></li>
-                    <li class="dm-item"><div class="avatar-wrapper"><div class="avatar"></div></div><div class="info-wrapper"><span class="dm-name">Figgy</span><span class="dm-status">Listenning to Building Blocks</span></div></li>
-                    <li class="dm-item"><div class="avatar-wrapper"><div class="avatar"></div></div><div class="info-wrapper"><span class="dm-name">void</span></div></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="user-footer">
-            <div class="user-info">
-                <div class="avatar-small"></div>
-                <div class="info-wrapper">
-                    <span class="user-name">Josiane</span>
-                    <span class="user-id">#0001</span>
-                </div>
-            </div>
-            <div class="user-controls">
-                <i class="fa-solid fa-gear"></i>
-            </div>
-        </div>
-    </aside>
+    <div th:replace="~{components/sidebar :: lado}"></div>
 
     <main class="main-content">
         <header class="main-topbar">
