@@ -1,0 +1,20 @@
+/* src/main/resources/static/style.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+.app-conteiner{
+display:inline
+color: #3B996E;
+}
+
+.app-header{
+    display: flex;
+
+    background-color: #3B996E;
+}
+

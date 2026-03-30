@@ -1,4 +1,4 @@
-package br.com.pi3.chat.types;
+package br.com.pi3.chat.model;
 
 import java.util.Random;
 
