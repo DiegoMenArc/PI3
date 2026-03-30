@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Interface Discord - Adicionar Amigo</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/homeAddAmigos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="/js/homeAddAmigos.js" defer></script>
+</head>
+<body>
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="search-bar">
+            <input type="text" placeholder="Procurar ou iniciar uma conversa">
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-user-friends"></i>
+                <span>Amigos</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-rocket"></i>
+                <span>Nitro</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-shop"></i>
+                <span>Loja</span>
+            </a>
+        </nav>
+
+        <div class="direct-messages">
+            <div class="dm-header">
+                <span>MENSAGENS DIRETAS</span>
+                <button class="add-dm">+</button>
+            </div>
+            <div class="dm-list">
+                <div class="dm-item">
+                    <div class="avatar-wrapper">
+                        <div class="avatar user-avatar">J</div>
+                        <div class="status online"></div>
+                    </div>
+                    <div class="user-info">
+                        <span class="username">Jesussyssi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-panel">
+            <div class="user-details">
+                <div class="avatar-wrapper">
+                    <img src="https://via.placeholder.com/32" alt="Seu Avatar" class="user-self-avatar">
+                    <div class="status online"></div>
+                </div>
+                <div class="user-text">
+                    <span class="my-username">Adaylson</span>
+                    <span class="my-tag">#0001</span>
+                </div>
+            </div>
+            <div class="user-settings">
+                <button class="icon-btn"><i class="fas fa-microphone"></i></button>
+                <button class="icon-btn"><i class="fas fa-headset"></i></button>
+                <button class="icon-btn"><i class="fas fa-cog"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="friends-header">
+            <div class="header-left">
+                <i class="fas fa-user-friends header-icon"></i>
+                <h1 class="header-title">Amigos</h1>
+                <div class="separator"></div>
+                <nav class="friends-nav">
+                    <a href="/" class="tab-item">Disponível</a>
+                    <a href="/todos" class="tab-item">Todos</a>
+                    <a href="#" class="tab-item">Pendentes</a>
+                    <a href="#" class="tab-item">Bloqueados</a>
+                    <a href="/addAmigos" class="add-friend-btn" style="background-color: transparent; color: #3ba55d;">Adicionar amigo</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn tooltip" data-tooltip="Nova conversa em grupo"><i class="fas fa-comment-medical"></i></button>
+                <div class="separator"></div>
+                <button class="icon-btn tooltip" data-tooltip="Caixa de entrada"><i class="fas fa-inbox"></i></button>
+                <button class="icon-btn tooltip" data-tooltip="Ajuda"><i class="fas fa-question-circle"></i></button>
+            </div>
+        </header>
+
+        <div class="friends-list-container add-friend-active">
+            <div class="add-friend-wrapper">
+                <h2 class="add-friend-title">Adicionar amigo</h2>
+                <p class="add-friend-subtitle">Você pode adicionar amigos com o nome de usuário deles.</p>
+
+                <div class="add-friend-input-box">
+                    <input
+                            type="text"
+                            placeholder="Você pode adicionar amigos com o nome de usuário deles."
+                            class="add-friend-input"
+                            id="inputAmigo"
+                            autocomplete="off">
+                    <button
+                            class="send-request-btn"
+                            id="btnEnviar"
+                            disabled>
+                        Enviar pedido de amizade
+                    </button>
+                </div>
+
+                <p class="add-friend-success" id="mensagemSucesso" style="display: none;">
+                    Sucesso! Seu pedido de amizade foi enviado para <span id="nomeUsuario" style="font-weight: bold;"></span>.
+                </p>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
