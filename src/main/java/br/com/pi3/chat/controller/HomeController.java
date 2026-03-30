@@ -15,4 +15,9 @@ public class HomeController {
     public String Todos(){
         return "home/todosAmigos";
     }
+
+    @GetMapping("/addAmigos")
+    public String HomeAddAmigos() {
+        return "home/HomeAddAmigos"; // Retorna o nome do template
+    }
 }
