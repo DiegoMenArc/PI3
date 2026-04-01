@@ -478,3 +478,52 @@ body {
     color: #b9bbbe;
     opacity: 0.6;
 }
+
+// Botão temporário para retornar para a home
+
+.close-btn {
+    width: 25px;
+    height: 25px;
+    background: rgba(32, 32, 36, 0.57);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: #F2F3F5;
+    top: 11px;
+    left: 4.5px;
+}
+
+.close-btn::before {
+    transform: rotate(45deg);
+}
+
+.close-btn::after {
+    transform: rotate(-45deg);
+}
+
+.btn-close-icon {
+    font-size: 18px;
+    color: #b9bbbe;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn-close-icon:hover {
+    background-color: rgba(79, 84, 92, 0.4);
+    color: #ffffff;
+}
