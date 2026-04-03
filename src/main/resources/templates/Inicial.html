@@ -10,17 +10,14 @@
 </head>
 <body>
 <div class="app-container">
-    <div class="app-header">
-        <img class="header-logo" src="/static/imgs/Frame%2078.svg" alt="">
-        <img class="header-opcoe" src="/static/imgs/Frame%2077.svg" alt="Opções">
-    </div>
+    
     <div class="app-body">
         <img class="chats" src="/static/imgs/Group.svg" alt="Chats">
         <div class="inicial-box">
             <p class="Inicial-main-txt">COMECE AGORA NO GLOBAL CHAT</p>
             <div class="box-botoes">
-                <button onclick="" class="cadastro">Cadastrar</button>
-                <button onclick="" class="login">Login</button>
+                <a th:href="@{/cadastro}" class="cadastro">Cadastrar</a>
+                <a th:href="@{/login}" class="login">Login</a>
             </div>
         </div>
     </div>

@@ -1,23 +1,25 @@
 package br.com.pi3.chat.model;
 
-import java.util.Random;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Generated;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Servidor {
-    private Random rd;
 
+    @Id @GeneratedValue Long id;
     private String nome;
-    private Long id;
     private User mainAdmin;
-    private User[] users;
-
-    public Servidor(){
-        this.id = rd.nextLong(1000000);
-    }
-
-    public Servidor(String nome){
-        this.nome = nome;
-    }
-
+    private ArrayList<User> users;
 
     //getters
 
@@ -29,15 +31,12 @@ public class Servidor {
         return id;
     }
 
-    public Random getRd() {
-        return rd;
-    }
 
     public User getMainAdmin() {
         return mainAdmin;
     }
 
-    public User[] getUsers() {
+    public ArrayList<User> getUsers() {
         return users;
     }
 
@@ -51,12 +50,5 @@ public class Servidor {
         this.mainAdmin = mainAdmin;
     }
 
-    public void setRd(Random rd) {
-        this.rd = rd;
-    }
-
-    public void setUsers(User[] users) {
-        this.users = users;
-    }
 }
 
