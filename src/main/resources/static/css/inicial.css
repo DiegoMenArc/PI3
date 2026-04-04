@@ -1,0 +1,91 @@
+/* src/main/resources/static/style.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-conteiner{
+    display:inline;
+    color: #3B996E;
+}
+
+.app-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 100px;
+    background: linear-gradient(190deg,rgba(34, 157, 104, 1) 45%, rgba(97, 155, 126, 1) 100%);
+}
+
+.app-header img:active{
+    cursor: pointer;
+}
+
+.app-header img{
+    width: 400px;
+    height: 7vh;
+}
+
+.app-body{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 20vh;
+    background: linear-gradient(174deg,rgba(101, 157, 126, 1) 35%, rgba(48, 141, 147, 1) 100%);
+    height: 93vh;
+}
+
+.chats{
+    width: 500px;
+}
+
+.Inicial-main-txt{
+    font-size: 50px;
+    color: black;
+    text-align: center;
+}
+
+.inicial-box{
+    background-color: #CFD6EF;
+    max-width: 35vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 4vh;
+}
+
+.box-botoes{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 50px;
+}
+
+.cadastro, .login{
+
+    width: 10vw;
+    height: 5vh;
+    font-size: 20px;
+    border: 0.5px solid #2F3136;
+    color: white;
+    border-radius: 2vh;
+    
+
+}
+
+.cadastro{
+    background-color: #3B996E;
+}
+
+.login{
+    background-color: #8EA1E4;
+}
+
+.cadastro, .login:active{
+    cursor: pointer;
+}
+

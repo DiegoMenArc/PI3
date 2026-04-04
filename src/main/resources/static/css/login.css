@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+}
+
+.header{
+     display: flex;
+     justify-content: space-between;
+     padding: 5px 100px;
+     background: linear-gradient(190deg,rgba(34, 157, 104, 1) 45%, rgba(97, 155, 126, 1) 100%);
+ }
+
+ .header img:active{
+     cursor: pointer;
+ }
+
+ .header img{
+     width: 400px;
+     height: 7vh;
+ }
