@@ -5,17 +5,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class CadasrtoController {
+public class CadastroController {
 
     @GetMapping("/cadastro")
     public String exibirForm(){
-        return "cadastro";
+        return "Cadastro";
     }
 
     @PostMapping("/registrar")
     public String processarCadastro(String email, String senha, String username) {
-        // Lógica para salvar o usuário no banco de dados aqui
+
+        // Aqui futuramente será feita a persistência no banco (JPA)
         System.out.println("Usuário registrado: " + username);
-        return "redirect:/login"; // Redireciona após o sucesso
+        return "redirect:/login";
     }
 }

@@ -5,26 +5,34 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class UserService extends HttpServlet {
+@Service
+public class UserService {
 
-    private ArrayList<User> Users;
+    // Lista em memória (simulando um banco de dados)
+    private List<User> users = new ArrayList<>();
 
-    protected void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
+//    protected void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//    }
 
+    // "Salva" um usuário na lista
     public String saveUser(User user){
-        this.Users.add(user);
+        this.users.add(user);
         Long id = user.getId();
+
+        // Retorna o usuário "salvo"
         return "User: "+getUserById(user.getId());
     }
 
-    public User getUserById(Integer id){
-        for(User user : Users){
-            if(id == user.getId()){
+    // Busca usuário pelo ID
+    public User getUserById(Long id){
+        for(User user : users){
+            if(id.equals(user.getId())){
                 return user;
             }
         }

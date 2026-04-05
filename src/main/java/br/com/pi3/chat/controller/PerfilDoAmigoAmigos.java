@@ -11,6 +11,4 @@ public class PerfilDoAmigoAmigos {
     String PerfilDoAmigoAmigos(){
         return "PerfilDoAmigoAmigos";
     }
-
-
 }

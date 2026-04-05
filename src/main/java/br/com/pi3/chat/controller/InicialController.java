@@ -10,14 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class InicialController {
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("GlobalChat", "ChatComunidade");
-        return "home";  // templates/home.html
+    public String inicial() {
+        return "Inicial"; // nome EXATO do arquivo
     }
 
-    @GetMapping("/login")
-    public String loginForm(Model model) {
-        model.addAttribute("user", new User());
-        return "login";
-    }
+
 }

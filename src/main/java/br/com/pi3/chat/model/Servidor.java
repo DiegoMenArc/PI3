@@ -1,14 +1,12 @@
 package br.com.pi3.chat.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -16,10 +14,20 @@ import java.util.ArrayList;
 @EqualsAndHashCode(of = "id")
 public class Servidor {
 
-    @Id @GeneratedValue Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String nome;
+
+    // Um servidor tem um administrador principal
+    @ManyToOne
+    @JoinColumn(name = "main_admin_id")
     private User mainAdmin;
-    private ArrayList<User> users;
+
+    // Um servidor possui vários usuários
+    @OneToMany(mappedBy = "servidor")
+    private List<User> users = new ArrayList<>();
 
     //getters
 
@@ -36,7 +44,7 @@ public class Servidor {
         return mainAdmin;
     }
 
-    public ArrayList<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 

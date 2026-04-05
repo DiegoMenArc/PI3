@@ -1,27 +1,33 @@
 package br.com.pi3.chat.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity // Indica que essa classe é uma entidade do banco de dados
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id // Chave primária
+    @GeneratedValue(strategy = GenerationType.AUTO) // Auto incremento
+
+    // Dados básicos do usuário
     private Long id;
-    private String nome, email, passowrd;
+    private String nome, email, password;
+    @Enumerated(EnumType.STRING) // Salva o enum como String no banco h2
     private Role role;
 
-    public User(){
+    @ManyToOne
+    @JoinColumn(name = "servidor_id")
+    private Servidor servidor;
 
-    }
+// não apaguei pois será o futuro constructor junto do banco de dados
+//
+//    public User(){
+//
+//    }
 
     public User(String nome){
         this.nome = nome;
