@@ -1,19 +1,341 @@
-*{
-    margin: 0;
+/* =========================================
+   RESET BÁSICO E VARIÁVEIS DE CORES
+========================================= */
+:root {
+    /* Fundo principal (gradiente sutil de deep navy para deep violet) */
+    --bg-gradient: linear-gradient(135deg, #0a0e1c 0%, #171c31 100%);
+
+    /* Cores de Texto */
+    --text-h1-gradient: linear-gradient(to right, #f8f1e0, #8b5cf6); /* De bege/branco para roxo claro */
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1; /* Cinza-azulado claro */
+
+    /* Cores do Card e Formulários (Escuros e Translúcidos) */
+    --card-bg: rgba(30, 41, 59, 0.75); /* Navy escuro com transparência */
+    --card-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(15, 23, 42, 0.9);
+    --input-border: rgba(255, 255, 255, 0.15);
+    --input-focus-border: #6366f1; /* Cor de foco Indigo */
+
+    /* Cores de Ação (Login e Cadastro vibrantes) */
+    --btn-cadastrar-bg: #10b981; /* Verde esmeralda brilhante */
+    --btn-cadastrar-hover: #059669;
+    --btn-login-bg: #6366f1; /* Azul indigo brilhante */
+    --btn-login-hover: #4f46e5;
+
+    /* Efeitos e Sombras */
+    --btn-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --btn-shine: 0 6px 20px rgba(99, 102, 241, 0.4);
+    --logo-gradient: linear-gradient(135deg, #8b5cf6, #6366f1);
+    --decoration-glow-color: rgba(99, 102, 241, 0.15); /* Halos de luz suaves */
 }
 
-.header{
-     display: flex;
-     justify-content: space-between;
-     padding: 5px 100px;
-     background: linear-gradient(190deg,rgba(34, 157, 104, 1) 45%, rgba(97, 155, 126, 1) 100%);
- }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Tipografia limpa */
+}
 
- .header img:active{
-     cursor: pointer;
- }
+body {
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
 
- .header img{
-     width: 400px;
-     height: 7vh;
- }
+/* =========================================
+   CABEÇALHO E LOGO
+========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    background: var(--logo-gradient);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    text-transform: uppercase;
+}
+
+.menu-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   TÍTULOS E TEXTOS DE HERO
+========================================= */
+.hero-content h1,
+.auth-card h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: var(--text-h1-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1.5px;
+}
+
+.auth-card h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* =========================================
+   CARDS DE AÇÃO E AUTENTICAÇÃO
+========================================= */
+.action-card,
+.auth-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 2.5rem;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.action-card {
+    margin-top: 2rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+}
+
+.buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* =========================================
+   BOTÕES (MODERNOS E VIBRANTES)
+========================================= */
+.btn {
+    flex: 1;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--btn-shadow);
+    letter-spacing: 1px;
+}
+
+.btn-register {
+    background-color: var(--btn-cadastrar-bg);
+}
+
+.btn-register:hover {
+    background-color: var(--btn-cadastrar-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--btn-shine);
+}
+
+.btn-login {
+    background-color: var(--btn-login-bg);
+}
+
+.btn-login:hover {
+    background-color: var(--btn-login-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--btn-shine);
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* =========================================
+   FORMULÁRIOS E ENTRADAS DE DADOS
+========================================= */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.8rem;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* =========================================
+   RODAPÉ DE AUTENTICAÇÃO E EFEITOS
+========================================= */
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-footer a {
+    color: var(--btn-login-bg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-footer a:hover {
+    color: var(--btn-login-hover);
+    text-decoration: underline;
+}
+
+.decoration-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--decoration-glow-color);
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.auth-glow {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* =========================================
+   LAYOUTS ESPECÍFICOS (PÁGINAS DE LOGIN/CADASTRO E HERO)
+========================================= */
+main.auth-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    position: relative;
+    padding: 2rem;
+}
+
+.hero-container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+    gap: 4rem;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.chat-mockup {
+    /* Mantenha o estilo do mockup do chat que você já criou aqui */
+    /* ... seus estilos existentes do mockup ... */
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+@media (max-width: 900px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .auth-card {
+        padding: 2rem;
+    }
+}

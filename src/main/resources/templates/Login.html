@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Global Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/login.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="auth-page">
 
-  <div class="header">
-    <img class="header-logo" src="/static/imgs/Frame-78.svg" alt="">
-    <img class="header-opcoe" src="/static/imgs/Frame-77.svg" alt="Opções">
+<header>
+  <div class="logo-container">
+    <a href="/" style="text-decoration: none;">
+      <div class="logo-icon">GC</div>
+    </a>
   </div>
-  <div class="body">
-    <div class="cad-Box">
-      <h2> LOGIN </h2>
-      <div class="inputs-login-box">
-        <form class="container" th:action="@{/login}" method="post">
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="password" name="senha" placeholder="Registre uma Senha" required>
+</header>
 
-          <button type="submit">Entrar</button>
-        </form>
+<main class="auth-main">
+  <div class="decoration-glow auth-glow"></div>
+
+  <div class="action-card auth-card">
+    <h2>Bem-vindo de volta!</h2>
+    <p class="auth-subtitle">Que bom ver você de novo.</p>
+
+    <form action="/login" method="POST">
+      <div class="input-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
       </div>
 
+      <div class="input-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+      </div>
+
+      <button type="submit" class="btn btn-login btn-block">ENTRAR</button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
     </div>
   </div>
+</main>
 
 </body>
 </html>
