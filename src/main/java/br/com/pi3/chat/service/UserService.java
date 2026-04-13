@@ -1,13 +1,8 @@
-package br.com.pi3.chat.servlets;
+package br.com.pi3.chat.service;
 
 import br.com.pi3.chat.model.User;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,8 +1,6 @@
-package br.com.pi3.chat.controller;
+package br.com.pi3.chat.controller.paginasInit;
 
-import br.com.pi3.chat.model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 

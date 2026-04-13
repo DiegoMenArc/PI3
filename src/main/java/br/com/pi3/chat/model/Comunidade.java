@@ -10,13 +10,10 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comunidade {
-
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    private String nome;
+public class Comunidade extends Chat {
+    @GeneratedValue @Id Long id;
+    String nome;
+    @OneToMany List<Mensagem> mensagens;
 
     // Administrador da comunidade
     @ManyToOne
@@ -44,5 +41,20 @@ public class Comunidade {
 
     public User getMainAdmin() {
         return mainAdmin;
+    }
+
+    @Override
+    public boolean enviaMensagem(String msg) {
+        return false;
+    }
+
+    @Override
+    public boolean deletaMensagem() {
+        return false;
+    }
+
+    @Override
+    public boolean editaMensagem() {
+        return false;
     }
 }
