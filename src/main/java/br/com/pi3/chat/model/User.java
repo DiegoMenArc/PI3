@@ -1,37 +1,30 @@
 package br.com.pi3.chat.model;
 
+import br.com.pi3.chat.model.rooms.Servidor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // Indica que essa classe é uma entidade do banco de dados
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User{
-    @Id // Chave primária
-    @GeneratedValue(strategy = GenerationType.AUTO) // Auto incremento
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) // Auto incremento
 
     // Dados básicos do usuário
     private Long id;
-    private String nome, email, password;
+    private String nome, email, username, senha, password;
     @Enumerated(EnumType.STRING) // Salva o enum como String no banco h2
     private Role role;
 
     @ManyToOne
     @JoinColumn(name = "servidor_id")
-    private Servidor servidor;
-
-// não apaguei pois será o futuro constructor junto do banco de dados
-//
-//    public User(){
-//
-//    }
-
-    public User(String nome){
-        this.nome = nome;
-    }
+    private List<Servidor> servidores = new ArrayList<>();
 
     // getters
 
@@ -51,6 +44,14 @@ public class User{
         return nome;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
     //setters
 
     public void setEmail(String email) {
@@ -67,6 +68,14 @@ public class User{
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
 

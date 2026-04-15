@@ -1,5 +1,7 @@
-package br.com.pi3.chat.model;
+package br.com.pi3.chat.model.rooms;
 
+import br.com.pi3.chat.model.Mensagem;
+import br.com.pi3.chat.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

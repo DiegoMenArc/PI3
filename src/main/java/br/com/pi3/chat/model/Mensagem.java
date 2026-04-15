@@ -10,4 +10,8 @@ public class Mensagem {
     public Mensagem(String m){
         this.conteudo = m;
     }
+
+    public String getConteudo() {
+        return conteudo;
+    }
 }
