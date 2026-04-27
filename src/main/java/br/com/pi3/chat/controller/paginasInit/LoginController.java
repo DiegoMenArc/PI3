@@ -1,11 +1,21 @@
 package br.com.pi3.chat.controller.paginasInit;
 
+import br.com.pi3.chat.model.User;
+import br.com.pi3.chat.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
+
+    private final UserService userService;
+
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/login")
     public String exibirLogin(){
@@ -13,11 +23,26 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String fazerLogin(String email, String senha){
+    public String fazerLogin(@RequestParam String email,
+                             @RequestParam String senha,
+                             HttpSession session, // 1. O Spring injeta a sessão aqui
+                             org.springframework.ui.Model model) {
 
-        // Aqui futuramente será feita a validação no banco (H2/MySQL)
-        System.out.println("Login: " + email);
+        User user = userService.autenticar(email, senha);
+
+        if (user == null || !user.getSenha().equals(senha)) {
+            model.addAttribute("erro", "Email ou senha inválidos");
+            return "Login";
+        }
+
+        session.setAttribute("usuarioLogado", user);
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/logout")
+    public String fazerLogout(HttpSession session) {
+        session.invalidate(); // Apaga todos os dados da sessão (desloga)
+        return "redirect:/"; // Manda de volta para a main
     }
 }

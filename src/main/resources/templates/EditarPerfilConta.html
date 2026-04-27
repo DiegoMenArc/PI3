@@ -299,7 +299,7 @@
             </div>
 
             <div class="profile-header-info">
-                <span class="username-title">Adaylson</span>
+                <span class="username-title" th:text="${nomeUsuario}">Nome</span>
                 <button class="btn btn-primary"
                         onclick="window.location.href='/EditarPerfilCard'">
                     Editar perfil de usuário
@@ -310,7 +310,7 @@
                 <div class="detail-row">
                     <div class="detail-info">
                         <span class="detail-label">Nome exibido</span>
-                        <span class="detail-value">Adaylson</span>
+                        <span class="detail-value" th:text="${nomeUsuario}">Nome exibido</span>
                     </div>
                     <button class="btn btn-secondary">Editar</button>
                 </div>
@@ -318,7 +318,7 @@
                 <div class="detail-row">
                     <div class="detail-info">
                         <span class="detail-label">Nome de usuário</span>
-                        <span class="detail-value">Adaylson</span>
+                        <span class="detail-value" th:text="${nomeUsuario}">Nome de usuario</span>
                     </div>
                     <button class="btn btn-secondary">Editar</button>
                 </div>
@@ -326,7 +326,7 @@
                 <div class="detail-row">
                     <div class="detail-info">
                         <span class="detail-label">E-mail</span>
-                        <span class="detail-value">**********@email.com <a class="link-text">Mostrar</a></span>
+                        <span class="detail-value" th:text="${emailUsuario}">**********@email.com <a class="link-text">Mostrar</a></span>
                     </div>
                     <button class="btn btn-secondary">Editar</button>
                 </div>
