@@ -1,29 +1,16 @@
-package br.com.pi3.chat.model;
+package br.com.pi3.chat.model.rooms;
 
+import br.com.pi3.chat.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comunidade extends Chat {
-    @GeneratedValue @Id Long id;
-    String nome;
-    @OneToMany List<Mensagem> mensagens;
-
-    // Administrador da comunidade
-    @ManyToOne
-    @JoinColumn(name = "main_admin_id")
-    private User mainAdmin;
-
-    // Lista de usuários participantes da comunidade
-    @OneToMany
-    @JoinColumn(name = "comunidade_id")
-    private List<User> users = new ArrayList<>();
+public class Comunidade extends Room {
 
     // getters
 
@@ -40,7 +27,7 @@ public class Comunidade extends Chat {
     }
 
     public User getMainAdmin() {
-        return mainAdmin;
+        return this.getAdmin();
     }
 
     @Override

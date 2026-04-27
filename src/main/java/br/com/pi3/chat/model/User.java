@@ -1,5 +1,6 @@
 package br.com.pi3.chat.model;
 
+import br.com.pi3.chat.model.rooms.Servidor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,11 +24,6 @@ public class User{
     @JoinColumn(name = "servidor_id")
     private Servidor servidor;
 
-// não apaguei pois será o futuro constructor junto do banco de dados
-//
-//    public User(){
-//
-//    }
 
     public User(String nome){
         this.nome = nome;

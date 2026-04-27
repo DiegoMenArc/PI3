@@ -1,5 +1,7 @@
-package br.com.pi3.chat.model;
+package br.com.pi3.chat.model.rooms;
 
+import br.com.pi3.chat.model.User;
+import br.com.pi3.chat.model.tipoRoom;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,6 +16,7 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 public class Inbox {
 
+    private tipoRoom Ibox = tipoRoom.Inbox;
     @Id
     @GeneratedValue
     private Long id;
