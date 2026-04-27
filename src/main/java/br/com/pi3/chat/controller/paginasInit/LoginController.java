@@ -26,7 +26,7 @@ public class LoginController {
                              @RequestParam String senha,
                              org.springframework.ui.Model model) {
 
-        User user = userService.buscarPorEmail(email);
+        User user = userService.autenticar(email, senha);
 
         if (user == null || !user.getSenha().equals(senha)) {
             model.addAttribute("erro", "Email ou senha inválidos");
