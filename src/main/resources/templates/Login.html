@@ -24,6 +24,10 @@
     <h2>Bem-vindo de volta!</h2>
     <p class="auth-subtitle">Que bom ver você de novo.</p>
 
+    <p th:if="${erro}" style="color: red; margin-bottom: 10px;">
+      <span th:text="${erro}"></span>
+    </p>
+
     <form action="/login" method="POST">
       <div class="input-group">
         <label for="email">E-mail</label>

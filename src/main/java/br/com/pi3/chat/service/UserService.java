@@ -59,4 +59,18 @@ public class UserService {
     public void deletar(Long id) {
         userRepository.deleteById(id);
     }
+
+    public User autenticar(String email, String senha) {
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if (user == null) {
+            return null;
+        }
+
+        if (!user.getSenha().equals(senha)) {
+            return null;
+        }
+
+        return user;
+    }
 }
