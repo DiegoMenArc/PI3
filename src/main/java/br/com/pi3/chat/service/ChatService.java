@@ -18,28 +18,52 @@ import java.util.List;
 @Transactional
 public class ChatService {
 
+    @Autowired
     private JpaRepositoryMensagem msgRepo;
-    private final JpaRepositoryChat chatRepo;
+//    private final JpaRepositoryChat chatRepo;
+//
+//    public ChatService(JpaRepositoryChat chatRepo) {
+//        this.chatRepo = chatRepo;
+//    }
+//
+//    public List<Mensagem> getMessages(Long chatId) {
+//        return msgRepo.findByChatIdOrderByCreatedAtDesc(chatId);
+//    }
+//    //Pega todas as mensagens criadas no chat
+//
+//    //Page é uma interface que divie o conteudo em paginas, invés de guardar tudo num bloco gigante de informação
+//    //Ajuda na otimização da aplicação
+//    public Page<Mensagem> getMessagesPaged(Long chatId, int page, int size) {
+//        return msgRepo.findByChatIdOrderByCreatedAtDesc(chatId,
+//                PageRequest.of(page, size, Sort.by("createdAt").descending()));
+//        //PageRequest é um método que pede a Paginna inicial, final e organiza os elementos(de cima pra baixo nesse caso),
+//    }
+//
+//    public Chat criaChat(Chat chat){
+//        if(chatRepo.existsById(chat.))
+//    }
 
-    public ChatService(JpaRepositoryChat chatRepo) {
-        this.chatRepo = chatRepo;
+    // MENSAGENS DE CANAL
+    public List<Mensagem> getMensagens(Long canalId) {
+        return msgRepo.findByCanalIdOrderByCreatedAtDesc(canalId);
     }
 
-    public List<Mensagem> getMessages(Long chatId) {
-        return msgRepo.findByChatIdOrderByCreatedAtDesc(chatId);
-    }
-    //Pega todas as mensagens criadas no chat
-
-    //Page é uma interface que divie o conteudo em paginas, invés de guardar tudo num bloco gigante de informação
-    //Ajuda na otimização da aplicação
-    public Page<Mensagem> getMessagesPaged(Long chatId, int page, int size) {
-        return msgRepo.findByChatIdOrderByCreatedAtDesc(chatId,
-                PageRequest.of(page, size, Sort.by("createdAt").descending()));
-        //PageRequest é um método que pede a Paginna inicial, final e organiza os elementos(de cima pra baixo nesse caso),
+    public Page<Mensagem> getMensagensCanalPaginado(Long canalId, int page, int size) {
+        return msgRepo.findByCanalIdOrderByCreatedAtDesc(
+                canalId,
+                PageRequest.of(page, size, Sort.by("createdAt").descending())
+        );
     }
 
-    public Chat criaChat(Chat chat){
-        if(chatRepo.existsById(chat.))
+    // MENSAGENS DE DM
+    public List<Mensagem> getMensagensDM(Long dmId) {
+        return msgRepo.findByMensagemDiretaIdOrderByCreatedAtDesc(dmId);
     }
 
+    public Page<Mensagem> getMensagensDMPaginado(Long dmId, int page, int size) {
+        return msgRepo.findByMensagemDiretaIdOrderByCreatedAtDesc(
+                dmId,
+                PageRequest.of(page, size, Sort.by("createdAt").descending())
+        );
+    }
 }

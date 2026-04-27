@@ -10,20 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity // Indica que essa classe é uma entidade do banco de dados
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Table(name = "Users")
 public class User{
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) // Auto incremento
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     // Dados básicos do usuário
     private Long id;
-    private String nome, email, username, senha, password;
+    private String nome, email, username, senha;
     @Enumerated(EnumType.STRING) // Salva o enum como String no banco h2
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "servidor_id")
+    @ManyToMany
+    @JoinTable(
+            name = "membros_do_servidor",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "serv_id")
+    )
     private List<Servidor> servidores = new ArrayList<>();
 
     // getters

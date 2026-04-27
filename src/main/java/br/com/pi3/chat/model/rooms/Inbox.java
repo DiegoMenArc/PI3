@@ -19,8 +19,8 @@ public class Inbox {
     @GeneratedValue
     private Long id;
     private String nome;
+    @ManyToMany
     private List<User> users = new ArrayList<>();
-
 
 
 }

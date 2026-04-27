@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Chat {
 
     @Id
@@ -30,8 +31,8 @@ public abstract class Chat {
     @ManyToMany
     private Set<User> participantes = new HashSet<>();
 
-    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
-    private List<Mensagem> mensagens = new ArrayList<>();
+    //@OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
+    //private List<Mensagem> mensagens = new ArrayList<>();
 
 
     //getters / setters

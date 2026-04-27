@@ -10,15 +10,23 @@ import java.util.List;
 
 @Repository
 public interface JpaRepositoryMensagem extends JpaRepository<Mensagem, Long> {
-    // Lista TODAS msgs do chat, ordenadas por created_at DESC (recentes primeiro)
-    List<Mensagem> findByChatIdOrderByCreatedAtDesc(Long chatId);
 
-    // Com paginação (essencial para servers grandes)
-    Page<Mensagem> findByChatIdOrderByCreatedAtDesc(Long chatId, Pageable pageable);
+    List<Mensagem> findByCanalIdOrderByCreatedAtDesc(Long canalId);
+    List<Mensagem> findByMensagemDiretaIdOrderByCreatedAtDesc(Long dmId);
 
-    // Últimas N mensagens
-    List<Mensagem> findFirst10ByChatIdOrderByCreatedAtDesc(Long chatId);
+    Page<Mensagem> findByCanalIdOrderByCreatedAtDesc(Long canalId, Pageable pageable);
 
-    // Por chat + sender
-    List<Mensagem> findByChatIdAndSenderIdOrderByCreatedAtDesc(Long chatId, Long senderId);
+    Page<Mensagem> findByMensagemDiretaIdOrderByCreatedAtDesc(Long dmId, Pageable pageable);
+
+//    // Lista TODAS msgs do chat, ordenadas por created_at DESC (recentes primeiro)
+//    List<Mensagem> findByChatIdOrderByCreatedAtDesc(Long chatId);
+//
+//    // Com paginação (essencial para servers grandes)
+//    Page<Mensagem> findByChatIdOrderByCreatedAtDesc(Long chatId, Pageable pageable);
+//
+//    // Últimas N mensagens
+//    List<Mensagem> findFirst10ByChatIdOrderByCreatedAtDesc(Long chatId);
+//
+//    // Por chat + sender
+//    List<Mensagem> findByChatIdAndSenderIdOrderByCreatedAtDesc(Long chatId, Long senderId);
 }

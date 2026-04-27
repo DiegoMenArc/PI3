@@ -10,13 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Servidor {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -27,8 +24,12 @@ public class Servidor {
     private User mainAdmin;
 
     // Um servidor possui vários usuários
-    @OneToMany(mappedBy = "servidor")
+    @ManyToMany(mappedBy = "servidores")
     private List<User> users = new ArrayList<>();
+
+    // canais
+    @OneToMany(mappedBy = "servidor", cascade = CascadeType.ALL)
+    private List<Canal> canais = new ArrayList<>();
 
     //getters
 
