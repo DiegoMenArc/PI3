@@ -2,6 +2,7 @@ package br.com.pi3.chat.controller.paginasInit;
 
 import br.com.pi3.chat.model.User;
 import br.com.pi3.chat.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ public class LoginController {
     @PostMapping("/login")
     public String fazerLogin(@RequestParam String email,
                              @RequestParam String senha,
+                             HttpSession session, // 1. O Spring injeta a sessão aqui
                              org.springframework.ui.Model model) {
 
         User user = userService.autenticar(email, senha);
@@ -33,6 +35,14 @@ public class LoginController {
             return "Login";
         }
 
+        session.setAttribute("usuarioLogado", user);
+
         return "redirect:/home";
+    }
+
+    @GetMapping("/logout")
+    public String fazerLogout(HttpSession session) {
+        session.invalidate(); // Apaga todos os dados da sessão (desloga)
+        return "redirect:/"; // Manda de volta para a main
     }
 }
