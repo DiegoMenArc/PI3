@@ -3,11 +3,10 @@ package br.com.pi3.chat.service;
 import br.com.pi3.chat.model.Mensagem;
 import br.com.pi3.chat.model.User;
 import br.com.pi3.chat.model.rooms.Canal;
+import br.com.pi3.chat.model.rooms.Inbox;
 import br.com.pi3.chat.model.rooms.MensagemDireta;
-import br.com.pi3.chat.repository.CanalRepository;
-import br.com.pi3.chat.repository.JpaRepositoryMensagem;
-import br.com.pi3.chat.repository.JpaRepositoryUser;
-import br.com.pi3.chat.repository.MensagemDiretaRepository;
+import br.com.pi3.chat.model.rooms.Room;
+import br.com.pi3.chat.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +18,7 @@ public class MensagemService {
     private final JpaRepositoryUser userRepo;
     private final CanalRepository canalRepo;
     private final MensagemDiretaRepository dmRepo;
+    private JpaRepositoryRoom repo;
 
     public MensagemService(JpaRepositoryMensagem msgRepo,
                            JpaRepositoryUser userRepo,
@@ -31,26 +31,26 @@ public class MensagemService {
     }
 
     // Enviar mensagem para canal
-    public Mensagem enviarParaCanal(Long userId, Long canalId, String conteudo) {
+    public Mensagem enviarParaCanal(Long userId, Long canalId, String conteudo) throws Throwable {
 
-        User user = userRepo.findById(userId)
+        User user = (User) userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        Canal canal = canalRepo.findById(canalId)
+        Room room = (Room) repo.findById(canalId)
                 .orElseThrow(() -> new RuntimeException("Canal não encontrado"));
 
         Mensagem msg = new Mensagem();
         msg.setConteudo(conteudo);
-        msg.setRemetente(user);
-        msg.setCanal(canal);
+        msg.setAutor(user);
+        msg.setChat(room);
 
-        return msgRepo.save(msg);
+        return msgRepo.saveMensage(msg);
     }
 
     // 🔹 Enviar mensagem para DM
-    public Mensagem enviarParaDM(Long userId, Long dmId, String conteudo) {
+    public Mensagem enviarParaDM(Long userId, Long dmId, String conteudo) throws Throwable {
 
-        User user = userRepo.findById(userId)
+        User user = (User) userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         MensagemDireta dm = dmRepo.findById(dmId)
@@ -58,9 +58,9 @@ public class MensagemService {
 
         Mensagem msg = new Mensagem();
         msg.setConteudo(conteudo);
-        msg.setRemetente(user);
-        msg.setDm(dm);
+        msg.setAutor(user);
+        msg.setChat(new Inbox());
 
-        return msgRepo.save(msg);
+        return msgRepo.saveMensage(msg);
     }
 }

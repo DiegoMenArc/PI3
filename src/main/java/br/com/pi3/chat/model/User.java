@@ -1,5 +1,6 @@
 package br.com.pi3.chat.model;
 
+import br.com.pi3.chat.model.rooms.Room;
 import br.com.pi3.chat.model.rooms.Servidor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,18 +17,13 @@ public class User{
 
     // Dados básicos do usuário
     private Long id;
-    private String nome, email, password;
+    private String nome, email, senha;
     @Enumerated(EnumType.STRING) // Salva o enum como String no banco h2
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "servidor_id")
-    private Servidor servidor;
-
-
-    public User(String nome){
-        this.nome = nome;
-    }
+    @ManyToOne  // ou @ManyToMany
+    @JoinColumn(name = "chat_room_id")
+    private Room chatRoom;  // ou Canal
 
     // getters
 
@@ -47,6 +43,10 @@ public class User{
         return nome;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     //setters
 
     public void setEmail(String email) {
@@ -63,6 +63,10 @@ public class User{
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
 

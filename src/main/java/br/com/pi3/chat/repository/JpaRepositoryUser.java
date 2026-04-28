@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface JpaRepositoryUser extends JpaRepository {
+public interface JpaRepositoryUser extends JpaRepository<User, Long> {
 
     User userPorId(Long id);
     List<User> findAllUsers();
@@ -16,6 +17,10 @@ public interface JpaRepositoryUser extends JpaRepository {
     List<User> findAllUsersByRoom(Long room_id);
     User saveUser(User u);
     Boolean deleteUser(Long id);
-    User editUser(Long id, User novo);
+    User editUser(Long id, User novo); Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
+    boolean existsByUsername(String username); //Vai retornar se o username do paramatro já existe no banco de dados
+    boolean existsByEmail(String email);
+
 
 }

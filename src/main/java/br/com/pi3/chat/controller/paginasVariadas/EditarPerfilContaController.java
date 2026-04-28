@@ -18,7 +18,7 @@ public class EditarPerfilContaController {
             return "redirect:/";
         }
 
-        model.addAttribute("nomeUsuario", logado.getUsername());
+        model.addAttribute("nomeUsuario", logado.getNome());
         model.addAttribute("emailUsuario", logado.getEmail());
 
         return "EditarPerfilConta";

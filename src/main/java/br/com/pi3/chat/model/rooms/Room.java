@@ -1,13 +1,11 @@
 package br.com.pi3.chat.model.rooms;
 
 import br.com.pi3.chat.model.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +17,14 @@ public abstract class Room {
     @GeneratedValue
     private Long id;
     private String nome;
-    private List<User> users;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "chat_room_users",
+            joinColumns = @JoinColumn(name = "chat_room_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users = new ArrayList<>();
 
     @ManyToOne
     private User admin;

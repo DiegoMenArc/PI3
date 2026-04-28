@@ -24,7 +24,7 @@ public class RoomService {
 
     public MensagemResponseDTO enviarMensagem(Long chat_id, String conteudo){
         Room chat = (Room) repo.findById(dto.getChat().getId()).orElseThrow();
-        User user = (User) userRepo.findById(dto.getAutor()).orElseThrow();
+        User user = (User) userRepo.findById(dto.getAutor().getId()).orElseThrow();
 
         Mensagem msg = new Mensagem();
         msg.setConteudo(dto.getConteudo());

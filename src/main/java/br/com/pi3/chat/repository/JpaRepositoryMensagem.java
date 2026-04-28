@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface JpaRepositoryMensagem extends JpaRepository {
+public interface JpaRepositoryMensagem extends JpaRepository<Mensagem, Integer> {
 
     Mensagem saveMensage(Mensagem m);
     List<Mensagem> findAllMessages();
