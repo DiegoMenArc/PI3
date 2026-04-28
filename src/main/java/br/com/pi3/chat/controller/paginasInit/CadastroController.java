@@ -39,7 +39,7 @@ public class CadastroController {
             @RequestParam String confirmarEmail,
             @RequestParam String senha,
             @RequestParam String confirmarSenha
-    ) {
+    ) throws Throwable {
 
         if (!email.equals(confirmarEmail)) {
             return "redirect:/cadastro?error=email";
@@ -50,12 +50,12 @@ public class CadastroController {
         }
 
         User user = new User();
-        user.setUsername(username);
+        user.setNome(username);
         user.setEmail(email);
         user.setSenha(senha); // depois você melhora com BCrypt
         user.setRole(Role.User);
 
-        userService.criarUser(user);
+        userService.saveUser(user);
 
         return "redirect:/login";
     }

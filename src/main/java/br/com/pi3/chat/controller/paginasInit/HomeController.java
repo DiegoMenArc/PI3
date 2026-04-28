@@ -17,7 +17,7 @@ public class HomeController {
             return "redirect:/";
         }
 
-        model.addAttribute("nomeUsuario", logado.getUsername());
+        model.addAttribute("nomeUsuario", logado.getNome());
         return "home/home"; // Retorna o nome do template
     }
 
@@ -29,7 +29,7 @@ public class HomeController {
             return "redirect:/";
         }
 
-        model.addAttribute("nomeUsuario", logado.getUsername());
+        model.addAttribute("nomeUsuario", logado.getNome());
         return "home/todosAmigos"; // Retorna o nome do template
     }
 
@@ -41,7 +41,7 @@ public class HomeController {
             return "redirect:/";
         }
 
-        model.addAttribute("nomeUsuario", logado.getUsername());
+        model.addAttribute("nomeUsuario", logado.getNome());
 
         return "home/HomeAddAmigos"; // Retorna o nome do template
     }

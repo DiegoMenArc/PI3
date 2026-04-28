@@ -22,6 +22,6 @@ public class Canal {
     @JoinColumn(name = "serv_id")
     private Servidor servidor;
 
-    @OneToMany(mappedBy = "canal", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "canal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mensagem> mensagens = new ArrayList<>();
 }

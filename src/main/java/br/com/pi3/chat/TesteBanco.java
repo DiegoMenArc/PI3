@@ -14,7 +14,7 @@ public class TesteBanco {
     CommandLineRunner testar(JpaRepositoryUser repo) {
         return args -> {
             User u = new User();
-            u.setUsername("teste");
+            u.setNome("teste");
             u.setEmail("teste@email.com");
             u.setSenha("123");
 

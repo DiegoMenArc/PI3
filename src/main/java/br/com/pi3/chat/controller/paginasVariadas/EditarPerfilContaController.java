@@ -26,8 +26,8 @@ public class EditarPerfilContaController {
             return "redirect:/";
         }
 
-
-        model.addAttribute("usuario", logado);
+        model.addAttribute("nomeUsuario", logado.getNome());
+        model.addAttribute("emailUsuario", logado.getEmail());
 
         return "EditarPerfilConta";
     }
@@ -53,6 +53,5 @@ public class EditarPerfilContaController {
             session.setAttribute("usuarioLogado", logado);
         }
 
-        return "redirect:/EditarPerfilConta";
-    }
+
 }

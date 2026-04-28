@@ -1,10 +1,8 @@
 package br.com.pi3.chat.model.rooms;
 
 import br.com.pi3.chat.model.User;
-import br.com.pi3.chat.model.tipoRoom;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -13,15 +11,12 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Inbox {
+public abstract class Room {
 
-    private tipoRoom Ibox = tipoRoom.Inbox;
     @Id
     @GeneratedValue
     private Long id;
     private String nome;
-
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -31,6 +26,25 @@ public class Inbox {
     )
     private List<User> users = new ArrayList<>();
 
+    @ManyToOne
+    private User admin;
+
+    public User getAdmin() {
+        return admin;
+    }
+
+    public boolean enviaMensagem(String msg){return true;};
+    public boolean deletaMensagem(){return true;};
+    public boolean editaMensagem(){return true;};
 
 
+    //getters
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

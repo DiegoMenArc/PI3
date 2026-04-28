@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ChatController {
 
     //O chat é a superclasse que dita o que vai ser servior/chat/comunidade, então é necessário somente o controller dele
-    //Testando jogar pra main adaylson
 
-//    @GetMapping("/chat/{}")
-    @GetMapping("/chat/{id}")
+    @GetMapping("/chat/{}")
     public String Chat(){
         return "chat";
     }

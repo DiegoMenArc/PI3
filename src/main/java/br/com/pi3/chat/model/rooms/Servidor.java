@@ -1,63 +1,46 @@
 package br.com.pi3.chat.model.rooms;
 
 import br.com.pi3.chat.model.User;
+import br.com.pi3.chat.model.tipoRoom;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Servidor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String nome;
-
-    // Um servidor tem um administrador principal
-    @ManyToOne
-    @JoinColumn(name = "main_admin_id")
-    private User mainAdmin;
-
-    // Um servidor possui vários usuários
-    @ManyToMany(mappedBy = "servidores")
-    private List<User> users = new ArrayList<>();
-
-    // canais
-    @OneToMany(mappedBy = "servidor", cascade = CascadeType.ALL)
-    private List<Canal> canais = new ArrayList<>();
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class Servidor extends Room {
+    private tipoRoom Servidor = tipoRoom.Servidor;
 
     //getters
 
     public String getNome() {
-        return nome;
+        return this.getNome();
     }
 
     public Long getId() {
-        return id;
+        return this.getId();
     }
 
-
-    public User getMainAdmin() {
-        return mainAdmin;
-    }
+    @ManyToOne
+    public User getAdmin(){return this.getAdmin();}
 
     public List<User> getUsers() {
-        return users;
+        return this.getUsers();
     }
 
     //setters
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
     }
 
-    public void setMainAdmin(User mainAdmin) {
-        this.mainAdmin = mainAdmin;
+    public void setMainAdmin(User admin) {
+        this.setMainAdmin(admin);
     }
 
 }

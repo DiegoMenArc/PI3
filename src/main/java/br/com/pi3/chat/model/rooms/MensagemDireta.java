@@ -22,7 +22,7 @@ public class MensagemDireta {
     @JoinColumn(name = "user_id_2")
     private User user2;
 
-    @OneToMany(mappedBy = "mensagemDireta", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mensagemDireta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mensagem> mensagens = new ArrayList<>();
 
 }

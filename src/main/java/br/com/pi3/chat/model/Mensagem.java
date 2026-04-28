@@ -1,58 +1,88 @@
 package br.com.pi3.chat.model;
 
 import br.com.pi3.chat.model.rooms.Canal;
+import br.com.pi3.chat.model.rooms.Inbox;
 import br.com.pi3.chat.model.rooms.MensagemDireta;
+import br.com.pi3.chat.model.rooms.Room;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
+@AllArgsConstructor
+@Data
 public class Mensagem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String conteudo;
+    @GeneratedValue @Id Integer id;
+    String conteudo;
 
     @ManyToOne
-    @JoinColumn(name = "remetente_id")
-    private User remetente;
+    @JoinColumn(name = "user_id")
+    User autor;
 
     @ManyToOne
-    @JoinColumn(name = "canal_id", nullable = true)
+    Room chat;
+
+    @Column(name = "data_envio")
+    private LocalDateTime dataEnvio;  // ← CAMPO FALTANDO!
+
+    private boolean editada = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "canal_id")
     private Canal canal;
 
-    @ManyToOne
-    @JoinColumn(name = "dm_id", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mensagem_direta_id")
     private MensagemDireta mensagemDireta;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    public Mensagem() {}
-
-    public Mensagem(String m){
+    public Mensagem(String m) {
         this.conteudo = m;
+    }
+
+    public Mensagem() {
+
+    }
+
+    public Room getChat() {
+        return chat;
     }
 
     public String getConteudo() {
         return conteudo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public User getAutor() {
+        return autor;
+    }
+
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
     }
 
-    public void setRemetente(User remetente) {
-        this.remetente = remetente;
+    public void setAutor(User autor) {
+        this.autor = autor;
     }
 
-    public void setCanal(Canal canal) {
-        this.canal = canal;
+    public void setChat(Room chat) {
+        this.chat = chat;
     }
 
-    public void setDm(MensagemDireta dm) {
-        this.mensagemDireta = dm;
-    }
+    public void setChat(Inbox inbox) {}
 
+    public Canal getCanal() { return canal; }
+    public void setCanal(Canal canal) { this.canal = canal; }
+
+    public MensagemDireta getMensagemDireta() { return mensagemDireta; }
+    public void setMensagemDireta(MensagemDireta mensagemDireta) {
+        this.mensagemDireta = mensagemDireta;
+    }
 }
