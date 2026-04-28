@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,14 +24,14 @@ public class UserService {
 
     public User criarUser(User user) {
         if (userRepository.existsByUsername(user.getNome())) {
-            throw new RuntimeException("Username já existe");
+            throw new RuntimeException("Nome já existe");
             //se já existir o username, não será criado um igual
         }
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("Email já existe");
             //se já existir o email, não será criado um igual
         }
-        return userRepository.saveUser(user);
+        return userRepository.save(user);
         //retorna o user salvo no BD
     }
 
@@ -40,8 +41,8 @@ public class UserService {
         //Ou emite uma mensage por Throw
     }
 
-    public User buscarPorUsername(String username) {
-        return userRepository.findByUsername(username)//Retorna user pelo Username
+    public User buscarPorUsername(String nome) {
+        return userRepository.findByUsername(nome)//Retorna user pelo Username
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
@@ -54,7 +55,7 @@ public class UserService {
         user.setNome(dados.getNome());
         user.setEmail(dados.getEmail());
         user.setSenha(dados.getSenha());
-        return userRepository.saveUser(user);
+        return userRepository.save(user);
     }
 
     public void deletar(Long id) {
@@ -63,7 +64,7 @@ public class UserService {
 
     // "Salva" um usuário na lista
     public User saveUser(User user) throws Throwable {
-        this.userRepository.saveUser(user);
+        this.userRepository.save(user);
         Long id = user.getId();
 
         // Retorna o usuário "salvo"
@@ -73,11 +74,14 @@ public class UserService {
     // Busca usuário pelo ID
 
     public User autenticar(String email, String senha) {
-        User user = userRepository.findByEmail(email).orElse(null);
+        // ✅ findByEmail retorna Optional<User>
+        Optional<User> optionalUser = userRepository.findByEmail(email);
 
-        if (user == null) {
+        if (optionalUser.isEmpty()) {
             return null;
         }
+
+        User user = optionalUser.get();
 
         if (!user.getSenha().equals(senha)) {
             return null;

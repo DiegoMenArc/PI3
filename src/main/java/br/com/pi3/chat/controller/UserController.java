@@ -19,6 +19,6 @@ public class UserController {
 
     @PostMapping
     public User criarUsuario(@RequestBody User user) {
-        return repo.saveUser(user);
+        return repo.save(user);
     }
 }

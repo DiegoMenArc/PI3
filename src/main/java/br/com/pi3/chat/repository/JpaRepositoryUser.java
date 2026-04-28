@@ -11,16 +11,10 @@ import java.util.Optional;
 @Repository
 public interface JpaRepositoryUser extends JpaRepository<User, Long> {
 
-    User userPorId(Long id);
-    List<User> findAllUsers();
-    List<Room> findAllRoomsByUser(Long user_id);
-    List<User> findAllUsersByRoom(Long room_id);
-    User saveUser(User u);
-    Boolean deleteUser(Long id);
-    User editUser(Long id, User novo); Optional<User> findByUsername(String username);
-    Optional<User> findByEmail(String email);
-    boolean existsByUsername(String username); //Vai retornar se o username do paramatro já existe no banco de dados
+    Optional<User> findByUsername(String username);
+    boolean existsByUsername(String username);
     boolean existsByEmail(String email);
-
+    Optional<User>findByEmail(String email);
+    List<User> findByNomeContainingIgnoreCase(String nome);
 
 }

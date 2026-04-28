@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity // Indica que essa classe é uma entidade do banco de dados
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 @EqualsAndHashCode(of = "id")
 public class User{
     @Id // Chave primária
@@ -17,7 +18,7 @@ public class User{
 
     // Dados básicos do usuário
     private Long id;
-    private String nome, email, senha;
+    private String username, email, senha;
     @Enumerated(EnumType.STRING) // Salva o enum como String no banco h2
     private Role role;
 
@@ -40,7 +41,7 @@ public class User{
     }
 
     public String getNome() {
-        return nome;
+        return username;
     }
 
     public String getSenha() {
@@ -58,7 +59,7 @@ public class User{
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.username = nome;
     }
 
     public void setRole(Role role) {

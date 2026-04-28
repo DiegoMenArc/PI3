@@ -8,14 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 public class RoomController {
 
     @Autowired
     private RoomService chatService;
 
-    // 🔍 Buscar chat
-    @GetMapping("/chat/{id}")
+    // Buscar chat
+    @GetMapping("/{id}")  // ou @GetMapping("/chat/{id}")
     public String procurarChat(@PathVariable Long id, Model model) {
         Room chat = chatService.buscarRoom(id);
         model.addAttribute("chat", chat);
@@ -25,7 +27,8 @@ public class RoomController {
     // Criar chat
     @PostMapping("/chat")
     public String criarChat() {
-        Room chat = chatService.criarRoom();
+        Room chat = null;
+        chat = chatService.criarRoom(chat);
         return "redirect:/chat/" + chat.getId();
     }
 
@@ -39,23 +42,8 @@ public class RoomController {
         return "redirect:/chat/" + chatId;
     }
 
-    // 🔎 Buscar mensagem (opcional)
-    @GetMapping("/mensagem/{id}")
-    public String procurarMensagem(@PathVariable Integer id, Model model) {
-        Mensagem msg = chatService.buscarMensagem(id);
-        model.addAttribute("mensagem", msg);
-        return "mensagem";
-    }
-
     //  Editar mensagem
-    @PutMapping("/mensagem/{id}")
-    public String editarMensagem(
-            @PathVariable Integer id,
-            @RequestParam String novoConteudo) {
 
-        chatService.editarMensagem(id, novoConteudo);
-        return "redirect:/mensagem/" + id;
-    }
 
     // Buscar usuário
     @GetMapping("/user/{id}")

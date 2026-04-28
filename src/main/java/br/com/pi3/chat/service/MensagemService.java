@@ -44,7 +44,7 @@ public class MensagemService {
         msg.setAutor(user);
         msg.setChat(room);
 
-        return msgRepo.saveMensage(msg);
+        return msgRepo.save(msg);
     }
 
     // 🔹 Enviar mensagem para DM
@@ -61,6 +61,6 @@ public class MensagemService {
         msg.setAutor(user);
         msg.setChat(new Inbox());
 
-        return msgRepo.saveMensage(msg);
+        return msgRepo.save(msg);
     }
 }

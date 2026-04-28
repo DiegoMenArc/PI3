@@ -5,14 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface JpaRepositoryMensagem extends JpaRepository<Mensagem, Integer> {
-
-    Mensagem saveMensage(Mensagem m);
-    List<Mensagem> findAllMessages();
-    Mensagem findMessageById(Integer id);
-    Boolean deleteMensagem(Integer id);
-    Mensagem editMensagem(Integer id, String novo);
-
+public interface JpaRepositoryMensagem extends JpaRepository<Mensagem, Long> {
+    List<Mensagem> findByChat_IdOrderByDataEnvioDesc(Long chatId);
 }

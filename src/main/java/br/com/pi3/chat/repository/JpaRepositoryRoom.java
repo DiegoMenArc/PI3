@@ -10,12 +10,4 @@ import java.util.List;
 
 @Repository
 public interface JpaRepositoryRoom extends JpaRepository<Room, Long> {
-
-    Room saveRoom();
-    boolean deleteRoom(Room c);
-    List<Room> findAllRooms();
-
-    User findUserrById(Long id);
-
-
 }

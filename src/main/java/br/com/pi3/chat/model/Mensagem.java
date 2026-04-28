@@ -6,20 +6,31 @@ import br.com.pi3.chat.model.rooms.MensagemDireta;
 import br.com.pi3.chat.model.rooms.Room;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
+@Data
 public class Mensagem {
 
 
-    @GeneratedValue @Id int id;
+    @GeneratedValue @Id Integer id;
     String conteudo;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     User autor;
 
     @ManyToOne
     Room chat;
+
+    @Column(name = "data_envio")
+    private LocalDateTime dataEnvio;  // ← CAMPO FALTANDO!
+
+    private boolean editada = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "canal_id")
