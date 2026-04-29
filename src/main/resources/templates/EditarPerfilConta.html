@@ -308,9 +308,9 @@
 
             <form th:action="@{/atualizarPerfil}" method="post">
 
-                <input type="text" name="username" th:value="${usuario.username}" class="detail-input">
+                <input type="text" name="username" th:value="${nomeUsuario}" class="detail-input">
 
-                <input type="email" name="email" th:value="${usuario.email}" class="detail-input">
+                <input type="email" name="email" th:value="${emailUsuario}" class="detail-input">
 
                 <button type="submit" class="btn btn-secondary">Salvar Tudo</button>
             </form>
@@ -341,7 +341,7 @@
     <p class="description">Desativar sua conta significa que você poderá recuperá-la quando quiser.</p>
 
     <div class="button-group">
-        <button class="btn btn-danger" onclick="window.location.href='/logout'">Desativar conta</button>
+        <button class="btn btn-danger" onclick="window.location.href='/logout'">Sair</button>
         <button class="btn btn-outline-danger" onclick="window.location.href='/deletarConta'">Excluir conta</button>
     </div>
 

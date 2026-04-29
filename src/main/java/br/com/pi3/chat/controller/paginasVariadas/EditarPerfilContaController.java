@@ -19,7 +19,7 @@ public class EditarPerfilContaController {
     }
 
     @GetMapping("/EditarPerfilConta")
-    public String EditarPerfilConta(HttpSession session, Model model){
+    public String exibirPaginaEditar(HttpSession session, Model model) {
         User logado = (User) session.getAttribute("usuarioLogado");
 
         if (logado == null) {
@@ -37,21 +37,32 @@ public class EditarPerfilContaController {
                                   @RequestParam String email,
                                   HttpSession session) {
 
-        // 1. Pega o objeto completo que está na sessão
         User logado = (User) session.getAttribute("usuarioLogado");
 
-        if (logado != null) {
-            // 2. ATUALIZA os dados do objeto com o que veio do formulário
-            logado.setUsername(username);
-            logado.setEmail(email);
-
-            // 3. Persiste no Banco de Dados
-            userService.atualizar(logado.getId(), logado);
-
-            // 4. SOBRESCREVE o objeto na sessão
-            // Isso é vital para que o @GetMapping leia os dados novos no próximo carregamento
-            session.setAttribute("usuarioLogado", logado);
+        if (logado == null) {
+            return "redirect:/login"; // Se a sessão caiu, manda pro login
         }
 
+        try {
+            // 1. Atualiza apenas os campos permitidos
+            logado.setNome(username);
+            logado.setEmail(email);
 
+            // 2. O service deve retornar o objeto atualizado vindo do banco
+            User usuarioAtualizado = userService.editarUser(logado.getId(), logado);
+
+            // 3. Atualiza a sessão com a versão "fresca" do banco de dados
+            session.setAttribute("usuarioLogado", usuarioAtualizado);
+
+            // Feedback para o usuário (opcional)
+            System.out.println("sucesso" + "Perfil atualizado com sucesso!");
+
+        } catch (Exception e) {
+            System.out.println("erro" + "Erro ao atualizar perfil.");
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+
+        return "redirect:/EditarPerfilConta";
+    }
 }
