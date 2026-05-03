@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Interface Discord - Amigos</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <aside th:fragment="lado" class="sidebar">
+        <div class="search-bar">
+            <input type="text" placeholder="Procurar ou iniciar uma conversa">
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-user-friends"></i>
+                <span>Amigos</span>
+            </a>
+        </nav>
+
+        <div class="direct-messages">
+            <div class="dm-header">
+                <span>MENSAGENS DIRETAS</span>
+                <button class="add-dm">+</button>
+            </div>
+
+            <div class="dm-list">
+                <div class="dm-item">
+                    <div class="avatar-wrapper">
+                        <div onclick="window.location.href = '/Perfil-AC' " class="avatar user-avatar">J</div>
+                        <div class="status online"></div>
+                    </div>
+                    <div class="user-info">
+                        <span class="username"><a href="http://localhost:8080/chat">Jesussyssi</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-panel">
+            <div class="user-details">
+                <div class="avatar-wrapper">
+                    <img src="https://via.placeholder.com/32" alt="Seu Avatar" class="user-self-avatar">
+                    <div class="status online"></div>
+                </div>
+                <div class="user-text">
+                    <span class="my-username"><a href="http://localhost:8080/EditarPerfilConta" th:text="${nomeUsuario}">Usuario</a></span>
+                    <span class="my-tag">#0001</span>
+                </div>
+            </div>
+            <div class="user-settings">
+                <button class="icon-btn"><i class="fas fa-microphone"></i></button>
+                <button class="icon-btn"><i class="fas fa-headset"></i></button>
+                <button class="icon-btn" onclick="window.location.href='/EditarPerfilConta'">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Servidores em Comum</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        body {
+            /* Usamos 100vh para ocupar 100% da altura da tela visível */
+            min-height: 100vh;
+            width: 100%;
+            background-color: #313338;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #F2F3F5;
+            overflow: hidden;
+        }
+
+        /* --- MODAL PRINCIPAL --- */
+        .modal-container {
+            width: 862px;
+            height: 642px;
+            background-color: #212328;
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            padding: 60px 40px 40px 40px;
+            gap: 40px;
+        }
+
+        /* Botão de Fechar */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #B5BAC1;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #F2F3F5;
+        }
+
+        /* --- COLUNA DA ESQUERDA (CARD DE PERFIL) --- */
+        .profile-column {
+            width: 306px;
+            height: 100%;
+        }
+
+        .profile-card {
+            background-color: #111214;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #343439;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-banner {
+            height: 120px;
+            background-color: #D9D9D9;
+            flex-shrink: 0;
+        }
+
+        .profile-body {
+            position: relative;
+            padding: 16px;
+            background-color: #242429;
+            flex-grow: 1;
+        }
+
+        .avatar-wrapper {
+            position: absolute;
+            top: -45px;
+            left: 16px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 6px solid #242429;
+            background-color: #18191C;
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 22px;
+            height: 22px;
+            background-color: #23A559;
+            border: 4px solid #242429;
+            border-radius: 50%;
+        }
+
+        .profile-info {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .profile-names {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .username {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
+        }
+
+        .subname {
+            font-size: 14px;
+            color: #B5BAC1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .subname::after {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #4F545C;
+            border-radius: 50%;
+        }
+
+        .message-btn {
+            background-color: #5865F2;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .message-btn:hover {
+            background-color: #4752C4;
+        }
+
+        .bio-text {
+            font-size: 14px;
+            color: #DBDEE1;
+            line-height: 1.4;
+        }
+
+        .member-since {
+            font-size: 12px;
+            font-weight: 700;
+            color: #B5BAC1;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .member-date {
+            font-size: 14px;
+            color: #DBDEE1;
+            font-weight: 400;
+            text-transform: none;
+        }
+
+        /* --- COLUNA DA DIREITA (LISTAS) --- */
+        .lists-column {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Abas (Tabs) */
+        .tabs {
+            display: flex;
+            gap: 24px;
+            border-bottom: 1px solid #4F545C;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tab-item {
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #555759; /* Cor inativa atualizada conforme o seu Figma */
+        }
+
+        .tab-item.active {
+            color: white;
+        }
+
+        /* Lista de Servidores */
+        .servers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .server-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .server-item:hover {
+            background-color: #2B2D31;
+        }
+
+        .server-icon {
+            width: 35px;
+            height: 35px;
+            background-color: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+            /* Se quiser adicionar a logo do servidor depois, coloque background-image ou tag img aqui dentro */
+        }
+
+        .server-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="modal-container">
+    <button onclick="window.location.href = '/'" class="close-btn">✕</button>
+
+    <div class="profile-column">
+        <div class="profile-card">
+            <div class="profile-banner"></div>
+            <div class="profile-body">
+                <div class="avatar-wrapper">
+                    <img src="https://placehold.co/90x90" alt="Avatar">
+                    <div class="status-dot"></div>
+                </div>
+
+                <div class="profile-info">
+                    <div class="profile-names">
+                        <div class="username">Adaylson</div>
+                        <div class="subname">Adaylson</div>
+                    </div>
+
+                    <button onclick="window.location.href='/chat'" class="message-btn">Mensagem</button>
+
+                    <div class="bio-text">
+                        Escreva alguma coisa para ser adicionada a sua bio
+                    </div>
+
+                    <div class="member-since">
+                        Membro des de
+                        <span class="member-date">XX/XX/XXXX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lists-column">
+
+        <div class="tabs">
+            <div onclick="window.location.href = '/Perfil-AC'" class="tab-item">X Amigos em comum</div>
+            <div class="tab-item active">Y Servidores em comum</div>
+        </div>
+
+        <div class="servers-list">
+            <div class="server-item">
+                <div class="server-icon"></div>
+                <div class="server-name">Servidor 1</div>
+            </div>
+
+            <div class="server-item">
+                <div class="server-icon"></div>
+                <div class="server-name">Servidor 2</div>
+            </div>
+
+            <div class="server-item">
+                <div class="server-icon"></div>
+                <div class="server-name">Servidor 3</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

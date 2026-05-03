@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 60px 24px;
+            padding: 100px 24px 60px;
             color: #F2F3F5;
         }
 
@@ -232,67 +232,88 @@
             gap: 16px;
             align-items: center;
         }
+
+        .close-btn {
+            width: 25px;
+            height: 25px;
+            background: rgba(32, 32, 36, 0.57);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .close-btn:hover { background: rgba(255, 255, 255, 0.1); }
+        .close-btn::before, .close-btn::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 2px;
+            background: #F2F3F5;
+            top: 11px;
+            left: 4.5px;
+        }
+        .close-btn::before { transform: rotate(45deg); }
+        .close-btn::after { transform: rotate(-45deg); }
+
+        .header {
+        width: 100%;
+        height: 58px;
+        border-bottom: 1px solid #4F545C;
+        display: flex;
+        align-items: center;
+        padding: 0 30px;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #212328;
+        z-index: 1000;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <div class="previa-label">Previa</div>
+<header class="header">
+    <div style="display: flex; gap: 20px;">
+        <div class="header-title" onclick="window.location.href='/EditarPerfilConta'" style="cursor:pointer;">
+            Segurança
+        </div>
+        <div class="header-title" style="opacity: 0.5; cursor:pointer;">
+            Status
+        </div>
+    </div>
 
+    <div onclick="window.location.href='/home'" class="close-btn"></div>
+</header>
+
+<div class="main-container">
     <div class="profile-card">
         <div class="banner"></div>
+
         <div class="profile-content">
+
             <div class="avatar-wrapper">
                 <img class="avatar-img" src="https://placehold.co/90x90" alt="Avatar">
                 <div class="status-indicator"></div>
             </div>
 
             <div class="profile-header-info">
-                <span class="username-title">Adaylson</span>
-                <button class="btn btn-primary">Editar perfil de usuário</button>
+                <span class="username-title" th:text="${nomeUsuario}">Nome</span>
+                <button class="btn btn-primary"
+                        onclick="window.location.href='/EditarPerfilCard'">
+                    Editar perfil de usuário
+                </button>
             </div>
 
-            <div class="details-box">
-                <div class="detail-row">
-                    <div class="detail-info">
-                        <span class="detail-label">Nome exibido</span>
-                        <span class="detail-value">Adaylson</span>
-                    </div>
-                    <button class="btn btn-secondary">Editar</button>
-                </div>
+            <form th:action="@{/atualizarPerfil}" method="post">
 
-                <div class="detail-row">
-                    <div class="detail-info">
-                        <span class="detail-label">Nome de usuário</span>
-                        <span class="detail-value">Adaylson</span>
-                    </div>
-                    <button class="btn btn-secondary">Editar</button>
-                </div>
+                <input type="text" name="username" th:value="${nomeUsuario}" class="detail-input">
 
-                <div class="detail-row">
-                    <div class="detail-info">
-                        <span class="detail-label">E-mail</span>
-                        <span class="detail-value">**********@email.com <a class="link-text">Mostrar</a></span>
-                    </div>
-                    <button class="btn btn-secondary">Editar</button>
-                </div>
+                <input type="email" name="email" th:value="${emailUsuario}" class="detail-input">
 
-                <div class="detail-row">
-                    <div class="detail-info">
-                        <span class="detail-label">Telefone</span>
-                        <span class="detail-value">Você ainda não adicionou um telefone.</span>
-                    </div>
-                    <button class="btn btn-secondary">Editar</button>
-                </div>
-
-                <div class="detail-row">
-                    <div class="detail-info">
-                        <span class="detail-label">Grupo Etário</span>
-                        <span class="detail-value">Não confirmado</span>
-                    </div>
-                    <button class="btn btn-secondary">Editar</button>
-                </div>
-            </div>
+                <button type="submit" class="btn btn-secondary">Salvar Tudo</button>
+            </form>
         </div>
     </div>
 
@@ -303,7 +324,8 @@
 
     <div class="setting-block">
         <h3 class="block-title">Aplicativo de Autenticação</h3>
-        <p class="description">Proteja sua conta com uma camada extra de segurança. Uma vez configurada, será necessário inserir sua senha e completar uma etapa adicional para poder entrar.</p>
+        <p class="description">Proteja sua conta com uma camada extra de segurança. Uma vez configurada, será necessário
+            inserir sua senha e completar uma etapa adicional para poder entrar.</p>
         <button class="btn btn-primary">Ativar o aplicativo de autenticação</button>
     </div>
 
@@ -319,8 +341,8 @@
     <p class="description">Desativar sua conta significa que você poderá recuperá-la quando quiser.</p>
 
     <div class="button-group">
-        <button class="btn btn-danger">Desativar conta</button>
-        <button class="btn btn-outline-danger">Excluir conta</button>
+        <button class="btn btn-danger" onclick="window.location.href='/logout'">Sair</button>
+        <button class="btn btn-outline-danger" onclick="window.location.href='/deletarConta'">Excluir conta</button>
     </div>
 
 </div>

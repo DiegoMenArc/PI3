@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Global Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body class="auth-page">
+
+<header>
+  <div class="logo-container">
+    <a href="/" style="text-decoration: none;">
+      <div class="logo-icon">GC</div>
+    </a>
+  </div>
+</header>
+
+<main class="auth-main">
+  <div class="decoration-glow auth-glow"></div>
+
+  <div class="action-card auth-card">
+    <h2>Criar uma conta</h2>
+    <p class="auth-subtitle">Junte-se à comunidade do Global Chat.</p>
+
+    <form  th:action="@{/registrar}" method="post">
+      <div class="input-group">
+        <label for="username">Nome de Usuário</label>
+        <input type="text" id="username" name="username" placeholder="Como quer ser chamado?" required>
+      </div>
+
+      <div class="input-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Seu melhor e-mail" required>
+      </div>
+
+      <div class="input-group">
+        <label for="confirmarEmail">Confirmar E-mail</label>
+        <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Digite seu e-mail novamente" required>
+      </div>
+
+      <div class="input-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" placeholder="Crie uma senha forte" required>
+      </div>
+
+      <div class="input-group">
+        <label for="confirmarSenha">Confirmar Senha</label>
+        <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Digite sua senha novamente" required>
+      </div>
+
+      <button type="submit" class="btn btn-register btn-block">CADASTRAR</button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Já possui uma conta? <a href="login.html">Faça login</a></p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Interface Discord - Adicionar Amigo</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/homeAddAmigos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="/js/homeAddAmigos.js" defer></script>
+</head>
+<body>
+<div class="app-container">
+    <div th:replace="~{components/sidebar :: lado}"></div>
+
+    <main class="main-content">
+        <div th:replace="~{components/navbar-superior :: topo}"></div>
+
+        <div class="friends-list-container add-friend-active">
+            <div class="add-friend-wrapper">
+                <h2 class="add-friend-title">Adicionar amigo</h2>
+                <p class="add-friend-subtitle">Você pode adicionar amigos com o nome de usuário deles.</p>
+
+                <div class="add-friend-input-box">
+                    <input
+                            type="text"
+                            placeholder="Você pode adicionar amigos com o nome de usuário deles."
+                            class="add-friend-input"
+                            id="inputAmigo"
+                            autocomplete="off">
+                    <button
+                            class="send-request-btn"
+                            id="btnEnviar"
+                            disabled>
+                        Enviar pedido de amizade
+                    </button>
+                </div>
+
+                <p class="add-friend-success" id="mensagemSucesso" style="display: none;">
+                    Sucesso! Seu pedido de amizade foi enviado para <span id="nomeUsuario" style="font-weight: bold;"></span>.
+                </p>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -18,6 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
+# Config sensível
+application.properties
 
 ### NetBeans ###
 /nbproject/private/
