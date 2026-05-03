@@ -1,0 +1,456 @@
+/* --- Reset e Variáveis de Cor --- */
+:root {
+    /* Cores do Tema Escuro do Discord */
+    --bg-sidebar: #2f3136;
+    --bg-main: #36393f;
+    --bg-user-panel: #292b2f;
+    --bg-search: #202225;
+    --text-primary: #dcddde;
+    --text-muted: #8e9297;
+    --text-interactive: #b9bbbe;
+    --text-active: #ffffff;
+    --status-online: #3ba55d;
+    --brand-experiment: #5865f2;
+    --add-friend-green: #248046;
+    --interactive-hover: #4f545c;
+    --background-modifier-selected: rgba(79, 84, 92, 0.32);
+    --border-separator: rgba(79, 84, 92, 0.48);
+
+    --font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body{
+    background-color: blue;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden; /* Impede rolagem na página inteira */
+    font-size: 14px;
+}
+
+/* --- Layout Principal --- */
+.app-container {
+    display: flex;
+    height: 100%;
+}
+
+/* --- Sidebar (Esquerda) --- */
+.sidebar {
+    width: 240px;
+    background-color: var(--bg-sidebar);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* Não deixa a sidebar encolher */
+}
+
+/* Barra de Busca */
+.search-bar {
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1.5px 0 rgba(0,0,0,0.05);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 6px 10px;
+    background-color: var(--bg-search);
+    border: none;
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.search-bar input::placeholder {
+    color: #72767d;
+}
+
+/* Navegação da Sidebar (Amigos, Nitro) */
+.sidebar-nav {
+    padding: 10px 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    color: var(--text-interactive);
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.nav-item i {
+    font-size: 18px;
+    width: 24px;
+    margin-right: 8px;
+    text-align: center;
+}
+
+.nav-item:hover {
+    background-color: var(--background-modifier-selected);
+    color: var(--text-active);
+}
+
+.nav-item.active {
+    background-color: rgba(79, 84, 92, 0.6);
+    color: var(--text-active);
+}
+
+/* Mensagens Diretas */
+.direct-messages {
+    padding: 18px 8px 10px;
+    flex: 1; /* Preenche o espaço restante */
+    overflow-y: auto; /* Permite rolagem apenas nas DMs */
+}
+
+/* Scrollbar estilizada (opcional) */
+.direct-messages::-webkit-scrollbar {
+    width: 4px;
+}
+.direct-messages::-webkit-scrollbar-thumb {
+    background-color: #202225;
+    border-radius: 2px;
+}
+
+.dm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px 4px 10px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.add-dm {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+}
+.add-dm:hover { color: var(--text-active); }
+
+/* Lista de DMs */
+.dm-list { margin-top: 4px; }
+
+.dm-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-interactive);
+}
+
+.dm-item:hover {
+    background-color: var(--background-modifier-selected);
+    color: var(--text-active);
+}
+
+.avatar-wrapper {
+    position: relative;
+    margin-right: 12px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Cores de avatar aleatórias */
+.user-avatar { background-color: #f04747; }
+.bot-avatar { background-color: #72767d; }
+
+.status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    border: 2px solid var(--bg-sidebar);
+}
+
+.status.online { background-color: var(--status-online); }
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.activity {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+.dm-item:hover .activity { color: var(--text-interactive); }
+
+.game-name { font-weight: 700; }
+
+/* Painel do Usuário (Rodapé da Sidebar) */
+.user-panel {
+    height: 52px;
+    background-color: var(--bg-user-panel);
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+}
+
+.user-self-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.user-text {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-username {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-active);
+}
+
+.my-tag {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.user-settings {
+    display: flex;
+    gap: 2px;
+}
+
+/* --- Área Principal (Direita) --- */
+.main-content {
+    flex: 1; /* Ocupa todo o resto da largura */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header de Amigos */
+.friends-header {
+    height: 50px;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1.5px 0 rgba(0,0,0,0.05);
+    z-index: 10;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-icon {
+    font-size: 20px;
+    color: var(--text-muted);
+    margin-right: 8px;
+}
+
+.header-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-active);
+    margin-right: 8px;
+}
+
+.separator {
+    width: 1px;
+    height: 24px;
+    background-color: var(--border-separator);
+    margin: 0 8px;
+}
+
+.friends-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-item {
+    padding: 2px 8px;
+    color: var(--text-interactive);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.tab-item:not(.active):hover {
+    background-color: var(--interactive-hover);
+    color: var(--text-active);
+}
+
+.tab-item.active {
+    color: var(--text-active);
+    background-color: rgba(79, 84, 92, 0.4);
+    cursor: default;
+}
+
+.add-friend-btn {
+    background-color: var(--add-friend-green);
+    color: var(--text-active);
+    border: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+/* Botões de Ícone Universais */
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-interactive);
+    font-size: 18px;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.icon-btn:hover {
+    color: var(--text-active);
+    background-color: var(--interactive-hover);
+}
+
+/* Tooltip simples */
+.tooltip { position: relative; }
+.tooltip:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+}
+.tooltip:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Área da Lista (Estado Vazio) */
+.friends-list-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 400px;
+}
+
+.empty-state-icon {
+    font-size: 80px;
+    color: #4f545c; /* Cor escura para ícone vazio */
+    margin-bottom: 20px;
+}
+
+.empty-state-text {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 20px;
+}
+
+/* --- Responsividade (Media Queries) --- */
+
+/* Para tablets e telas menores */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px; /* Encolhe a sidebar drasticamente */
+    }
+
+    /* Esconde textos na sidebar encolhida */
+    .search-bar input::placeholder,
+    .nav-item span,
+    .dm-header,
+    .user-text,
+    .activity,
+    .direct-messages {
+        display: none;
+    }
+
+    .nav-item i { margin-right: 0; font-size: 22px; }
+    .avatar-wrapper { margin-right: 0; }
+    .user-panel { flex-direction: column; height: auto; padding: 10px 0; }
+    .user-settings { display: none; } /* Esconde configurações na mobile sidebar */
+    .user-details { justify-content: center; }
+
+    /* Ajustes no Header Principal */
+    .friends-header { padding: 0 10px; }
+    .header-title, .friends-header .separator:first-of-type { display: none; } /* Esconde título "Amigos" */
+
+    /* Faz a navegação virar uma lista rolável horizontalmente */
+    .friends-nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 5px; /* Espaço para scrollbar se aparecer */
+    }
+
+    .add-friend-btn { margin-left: 5px; padding: 2px 6px; }
+}
+
+/* Para celulares muito pequenos */
+@media (max-width: 480px) {
+    .sidebar { display: none; } /* Esconde a sidebar completamente */
+
+    .header-right { display: none; } /* Esconde ícones da direita no header */
+
+    .friends-nav { width: 100%; justify-content: flex-start; }
+}
