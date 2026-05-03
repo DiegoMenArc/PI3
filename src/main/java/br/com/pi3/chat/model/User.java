@@ -40,7 +40,7 @@ public class User{
         return email;
     }
 
-    public String getNome() {
+    public String getUsername() {
         return username;
     }
 
@@ -58,8 +58,8 @@ public class User{
         this.id = id;
     }
 
-    public void setNome(String nome) {
-        this.username = nome;
+    public void setUsername(String nome) {
+        this.username = username;
     }
 
     public void setRole(Role role) {

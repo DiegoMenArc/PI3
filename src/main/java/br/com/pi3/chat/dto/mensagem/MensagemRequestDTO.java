@@ -1,4 +1,4 @@
-package br.com.pi3.chat.dto.mensagem;
+package br.com.pi3.chat.DTO.mensagem;
 
 import br.com.pi3.chat.model.Mensagem;
 import br.com.pi3.chat.model.User;
@@ -11,6 +11,8 @@ public class MensagemRequestDTO {
 
     private Long chatId;
     private Long userId;
+    private Long canalId;    // se for via canal
+    private Long dmId;       // se for via DM
     private String conteudo;
 
     public String getConteudo() {
@@ -33,7 +35,7 @@ public class MensagemRequestDTO {
     private JpaRepositoryUser userRepository;
     private JpaRepositoryRoom chatRepository;
 
-    public MensagemResponseDTO enviarMensagem(MensagemRequestDTO dto) {
+    public br.com.pi3.chat.dto.mensagem.MensagemResponseDTO enviarMensagem(MensagemRequestDTO dto) {
 
         Room chat = (Room) chatRepository.findById(dto.getChatId()).orElseThrow();
         User user = (User) userRepository.findById(dto.getUserId()).orElseThrow();
@@ -45,7 +47,7 @@ public class MensagemRequestDTO {
 
         mensagemRepository.save(msg);
 
-        return new MensagemResponseDTO(msg);
+        return new br.com.pi3.chat.dto.mensagem.MensagemResponseDTO(msg);
     }
 
 }

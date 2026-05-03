@@ -18,16 +18,18 @@ public class MensagemService {
     private final JpaRepositoryUser userRepo;
     private final CanalRepository canalRepo;
     private final MensagemDiretaRepository dmRepo;
-    private JpaRepositoryRoom repo;
+    private final JpaRepositoryRoom repo;
 
     public MensagemService(JpaRepositoryMensagem msgRepo,
                            JpaRepositoryUser userRepo,
                            CanalRepository canalRepo,
-                           MensagemDiretaRepository dmRepo) {
+                           MensagemDiretaRepository dmRepo,
+                           JpaRepositoryRoom repo) {
         this.msgRepo = msgRepo;
         this.userRepo = userRepo;
         this.canalRepo = canalRepo;
         this.dmRepo = dmRepo;
+        this.repo = repo;
     }
 
     // Enviar mensagem para canal

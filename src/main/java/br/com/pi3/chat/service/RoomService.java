@@ -12,22 +12,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
 @Service
 @Transactional
 public class RoomService {
 
-    private MensagemResponseDTO dto;
-    private JpaRepositoryMensagem msgRepo;
-    private JpaRepositoryUser userRepo;
-    private JpaRepositoryRoom repo;
+    private final JpaRepositoryMensagem msgRepo;
+    private final JpaRepositoryUser userRepo;
+    private final JpaRepositoryRoom repo;
 
-    public MensagemResponseDTO enviarMensagem(Long chat_id, String conteudo){
-        Room chat = (Room) repo.findById(dto.getChat().getId()).orElseThrow();
-        User user = (User) userRepo.findById(dto.getAutor().getId()).orElseThrow();
+    public RoomService(
+            JpaRepositoryMensagem msgRepo,
+            JpaRepositoryUser userRepo,
+            JpaRepositoryRoom repo) {
+        this.msgRepo = msgRepo;
+        this.userRepo = userRepo;
+        this.repo = repo;
+    }
+
+    public MensagemResponseDTO enviarMensagem(Long chatId, String conteudo) {
+        Room chat = repo.findById(chatId)
+                .orElseThrow(() -> new RuntimeException("Chat não encontrado"));
+
+        User user = userRepo.findById(chat.getAdmin().getId())  // ou outro critério
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         Mensagem msg = new Mensagem();
-        msg.setConteudo(dto.getConteudo());
+        msg.setConteudo(conteudo);
         msg.setAutor(user);
         msg.setChat(chat);
 
@@ -36,16 +46,17 @@ public class RoomService {
         return new MensagemResponseDTO(msg);
     }
 
-    public Optional<User> buscarUser(Long id){
-        return this.userRepo.findById(id);
+    public Optional<User> buscarUser(Long id) {
+        return userRepo.findById(id);
     }
 
-    public Room criarRoom(Room r){
-        return this.repo.save(r);
+    public Room criarRoom(Room r) {
+        return repo.save(r);
     }
 
-    public Room buscarRoom(Long id){
-        return this.buscarRoom(id);
+    public Room buscarRoom(Long id) {
+        // 👇 aqui você estava chamando buscarRoom dentro de buscarRoom → recursão infinita
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Chat não encontrado"));
     }
-
 }

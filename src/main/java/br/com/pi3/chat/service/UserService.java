@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public User criarUser(User user) {
-        if (userRepository.existsByUsername(user.getNome())) {
+        if (userRepository.existsByUsername(user.getUsername())) {
             throw new RuntimeException("Nome já existe");
             //se já existir o username, não será criado um igual
         }
@@ -52,7 +52,7 @@ public class UserService {
 
     public User editarUser(Long id, User dados) throws Throwable {
         User user = buscarPorId(id);
-        user.setNome(dados.getNome());
+        user.setUsername(dados.getUsername());
         user.setEmail(dados.getEmail());
         user.setSenha(dados.getSenha());
         return userRepository.save(user);
@@ -64,11 +64,7 @@ public class UserService {
 
     // "Salva" um usuário na lista
     public User saveUser(User user) throws Throwable {
-        this.userRepository.save(user);
-        Long id = user.getId();
-
-        // Retorna o usuário "salvo"
-        return this.buscarPorId(user.getId());
+        return userRepository.save(user);
     }
 
     // Busca usuário pelo ID

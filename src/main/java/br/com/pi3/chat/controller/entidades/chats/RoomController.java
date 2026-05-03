@@ -17,7 +17,7 @@ public class RoomController {
     private RoomService chatService;
 
     // Buscar chat
-    @GetMapping("/{id}")  // ou @GetMapping("/chat/{id}")
+    @GetMapping("/chat/{id}")  // ou @GetMapping("/chat/{id}")
     public String procurarChat(@PathVariable Long id, Model model) {
         Room chat = chatService.buscarRoom(id);
         model.addAttribute("chat", chat);
@@ -48,7 +48,7 @@ public class RoomController {
     // Buscar usuário
     @GetMapping("/user/{id}")
     public String procurarUser(@PathVariable Long id, Model model) {
-        model.addAttribute("user", chatService.buscarUser(id));
+        model.addAttribute("user", chatService.buscarRoom(id));
         return "user";
     }
 }

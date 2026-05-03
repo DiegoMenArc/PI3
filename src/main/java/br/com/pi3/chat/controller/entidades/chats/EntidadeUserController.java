@@ -16,7 +16,7 @@ public class EntidadeUserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/chat/{id}")
+    @GetMapping("/user/{id}")
     public String procurarUser(@PathVariable Long id, Model model) throws Throwable {
         User user = userService.buscarPorId(id);
         //pega o user dentro do service/bd
@@ -24,16 +24,16 @@ public class EntidadeUserController {
         return "user";
     }
 
-    @PostMapping  // ou @PostMapping("")
+    @PostMapping("/user")  // ou @PostMapping("")
     public String criaUser(@ModelAttribute User user, Model model) throws Throwable {
         User service = userService.saveUser(user);
         return "redirect:/user/" +service.getId();
     }
 
-    @PostMapping("/user")
+    @PostMapping("/user/{id}")
     public String editUser(@PathVariable Long id, User u, Model m) throws Throwable {
         User service = userService.editarUser(id, u);
-        m.addAttribute("user", u);
+        m.addAttribute("user", service);
         return "user";
     }
 

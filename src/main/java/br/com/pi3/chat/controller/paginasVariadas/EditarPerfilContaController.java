@@ -26,7 +26,7 @@ public class EditarPerfilContaController {
             return "redirect:/";
         }
 
-        model.addAttribute("nomeUsuario", logado.getNome());
+        model.addAttribute("nomeUsuario", logado.getUsername());
         model.addAttribute("emailUsuario", logado.getEmail());
 
         return "EditarPerfilConta";
@@ -45,7 +45,7 @@ public class EditarPerfilContaController {
 
         try {
             // 1. Atualiza apenas os campos permitidos
-            logado.setNome(username);
+            logado.setUsername(username);
             logado.setEmail(email);
 
             // 2. O service deve retornar o objeto atualizado vindo do banco

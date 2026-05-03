@@ -50,7 +50,7 @@ public class CadastroController {
         }
 
         User user = new User();
-        user.setNome(username);
+        user.setUsername(username);
         user.setEmail(email);
         user.setSenha(senha); // depois você melhora com BCrypt
         user.setRole(Role.User);
