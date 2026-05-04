@@ -1,4 +1,4 @@
-package br.com.pi3.chat.dto.mensagem;
+package br.com.pi3.chat.DTO.mensagem;
 
 import br.com.pi3.chat.model.Mensagem;
 import br.com.pi3.chat.model.User;

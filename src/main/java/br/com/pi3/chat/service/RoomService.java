@@ -1,6 +1,6 @@
 package br.com.pi3.chat.service;
 
-import br.com.pi3.chat.dto.mensagem.MensagemResponseDTO;
+import br.com.pi3.chat.DTO.mensagem.MensagemResponseDTO;
 import br.com.pi3.chat.model.Mensagem;
 import br.com.pi3.chat.model.User;
 import br.com.pi3.chat.model.rooms.Room;

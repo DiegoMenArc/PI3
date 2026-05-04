@@ -35,7 +35,7 @@ public class MensagemRequestDTO {
     private JpaRepositoryUser userRepository;
     private JpaRepositoryRoom chatRepository;
 
-    public br.com.pi3.chat.dto.mensagem.MensagemResponseDTO enviarMensagem(MensagemRequestDTO dto) {
+    public br.com.pi3.chat.DTO.mensagem.MensagemResponseDTO enviarMensagem(MensagemRequestDTO dto) {
 
         Room chat = (Room) chatRepository.findById(dto.getChatId()).orElseThrow();
         User user = (User) userRepository.findById(dto.getUserId()).orElseThrow();
@@ -47,7 +47,7 @@ public class MensagemRequestDTO {
 
         mensagemRepository.save(msg);
 
-        return new br.com.pi3.chat.dto.mensagem.MensagemResponseDTO(msg);
+        return new br.com.pi3.chat.DTO.mensagem.MensagemResponseDTO(msg);
     }
 
 }

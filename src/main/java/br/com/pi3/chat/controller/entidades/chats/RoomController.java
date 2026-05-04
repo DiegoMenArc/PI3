@@ -46,9 +46,10 @@ public class RoomController {
 
 
     // Buscar usuário
-    @GetMapping("/user/{id}")
-    public String procurarUser(@PathVariable Long id, Model model) {
-        model.addAttribute("user", chatService.buscarRoom(id));
-        return "user";
-    }
+    // comentei porque o EntidadeUserController já utiliza esse codigo
+//    @GetMapping("/user/{id}")
+//    public String procurarUser(@PathVariable Long id, Model model) {
+//        model.addAttribute("user", chatService.buscarRoom(id));
+//        return "user";
+//    }
 }

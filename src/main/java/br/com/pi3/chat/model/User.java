@@ -58,7 +58,7 @@ public class User{
         this.id = id;
     }
 
-    public void setUsername(String nome) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
