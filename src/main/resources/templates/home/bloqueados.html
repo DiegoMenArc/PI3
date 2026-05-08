@@ -1,76 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="~{fragments/head :: head}"></head>
-
 <body class="d-flex vh-100 vw-100 m-0 body_home">
 
-<!-- Barra de Servidores (Esquerda) -->
 <div th:replace="~{fragments/nav-servers :: nav-servers}"></div>
 
 <div class="d-flex flex-column flex-grow-1">
-
-    <!-- Navbar Superior -->
     <div th:replace="~{fragments/navbar-superior :: nav-top}"></div>
-
     <div class="d-flex flex-grow-1 overflow-hidden">
-
-        <!-- Barra Lateral de Amigos -->
         <div th:replace="~{fragments/navbar-lateral :: nav-lateral}"></div>
 
-        <!-- Conteúdo Principal: Todos os Amigos -->
         <main class="flex-grow-1 d-flex flex-column align-items-start p-4 body_home overflow-auto">
-
             <div class="friends-container w-100" style="max-width: 800px;">
 
-                <!-- Barra de Busca -->
                 <div class="search-bar-main shadow-sm mb-4">
                     <input type="text" placeholder="Buscar" class="search-input-main">
                     <i class="bi bi-search text-secondary"></i>
                 </div>
 
-                <!-- Cabeçalho da Lista -->
                 <div class="friends-list-header mb-2 pb-2">
-                    TODOS OS AMIGOS — 1
+                    BLOQUEADOS — 1
                 </div>
 
-                <!-- Lista de Amigos -->
                 <div class="friends-list">
-
-                    <!-- Linha do Amigo 1 -->
+                    <!-- Linha de Usuário Bloqueado -->
                     <div class="friend-row d-flex justify-content-between align-items-center p-2 rounded">
-
-                        <!-- Lado Esquerdo: Avatar, Nome e Status -->
                         <div class="d-flex align-items-center gap-3">
                             <div class="position-relative">
-                                <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="width: 40px; height: 40px; background-color: #6366f1;">
-                                    J
+                                <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="width: 40px; height: 40px; background-color: #64748b;">
+                                    U
                                 </div>
-                                <!-- Bolinha de Status (Cinza = Offline) -->
-                                <span class="position-absolute bottom-0 end-0 p-1 border border-dark rounded-circle" style="background-color: #747f8d;"></span>
                             </div>
                             <div class="d-flex flex-column">
-                                <span class="text-white fw-bold fs-6">jesutoyosi</span>
-                                <span class="text-secondary small">Offline</span>
+                                <span class="text-white fw-bold fs-6">UserChato123</span>
+                                <span class="text-secondary small">Bloqueado</span>
                             </div>
                         </div>
 
-                        <!-- Lado Direito: Ações (Ícones) -->
+                        <!-- Botão de Desbloquear -->
                         <div class="friend-actions d-flex gap-2">
-                            <div class="action-btn shadow-sm" title="Enviar Mensagem">
-                                <i class="bi bi-chat-fill"></i>
-                            </div>
-                            <div class="action-btn shadow-sm" title="Mais opções">
-                                <i class="bi bi-three-dots-vertical"></i>
+                            <div class="action-btn action-btn-reject shadow-sm" title="Desbloquear">
+                                <i class="bi bi-person-x-fill"></i>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
-
         </main>
-
     </div>
 </div>
 

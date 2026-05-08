@@ -411,6 +411,170 @@ main {
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
 }
 
+/* --- Estilos da página Adicionar Amigo --- */
+
+.add-friend-title {
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
+}
+
+.add-friend-subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+/* Caixa que envolve o input e o botão */
+.add-friend-input-wrapper {
+    background-color: var(--chat-es); /* Usa o fundo mais escuro */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0.5rem;
+    transition: border-color 0.2s ease;
+}
+
+/* Quando clica no input, a borda do wrapper fica verde */
+.add-friend-input-wrapper:focus-within {
+    border-color: var(--primary-color);
+}
+
+/* O input em si (transparente e sem borda) */
+.add-friend-input {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    flex-grow: 1; /* Ocupa todo o espaço restante */
+    padding: 0.5rem 0.5rem;
+    outline: none;
+    font-size: 1rem;
+}
+
+.add-friend-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+}
+
+/* Botão de Enviar Pedido */
+.btn-send-request {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Visual do botão quando está desabilitado (input vazio) */
+.btn-send-request:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Efeito Hover só funciona se o botão não estiver desabilitado */
+.btn-send-request:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+/* --- Estilos da página Todos os Amigos --- */
+
+/* Barra de Busca Principal */
+.search-bar-main {
+    background-color: var(--chat-es);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.search-bar-main:focus-within {
+    border-color: var(--input-focus-border);
+}
+
+.search-input-main {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    flex-grow: 1;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.search-input-main::placeholder {
+    color: var(--text-muted);
+}
+
+/* Cabeçalho "TODOS OS AMIGOS - X" */
+.friends-list-header {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Linha de cada amigo */
+.friend-row {
+    transition: background-color 0.2s ease, margin 0.2s ease;
+    cursor: pointer;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Efeito Hover na linha (fundo levemente mais claro) */
+.friend-row:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Botões de Ação (Mensagem e Opções) */
+.friend-actions .action-btn {
+    background-color: var(--chat-bg);
+    color: var(--text-muted);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* Quando passa o mouse na LINHA, os botões ficam um pouco mais escuros */
+.friend-row:hover .friend-actions .action-btn {
+    background-color: var(--chat-es);
+    color: #cbd5e1;
+}
+
+/* Quando passa o mouse NO BOTÃO, ele ilumina */
+.friend-actions .action-btn:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* --- Estilos para Botões de Ação Específicos (Pendentes/Bloqueados) --- */
+
+/* Botão Aceitar (Verde) */
+.friend-actions .action-btn-accept:hover {
+    background-color: #23a559 !important; /* Verde Discord */
+    color: white !important;
+}
+
+/* Botão Recusar/Desbloquear (Vermelho) */
+.friend-actions .action-btn-reject:hover {
+    background-color: #da373c !important; /* Vermelho Discord */
+    color: white !important;
+}
+
 
 /* Responsividade */
 @media (max-width: 900px) {

@@ -7,19 +7,22 @@
 
     <div class="d-flex flex-grow-1 align-items-center justify-content-between px-2">
         <div class="d-flex align-items-center gap-3">
-            <a href="#" class="text-white text-decoration-none fw-bold d-flex align-items-center gap-2 nav-link-amigos">
-                <i class="bi bi-people-fill"></i> Amigos
-            </a>
-            <div class="vr bg-secondary" style="height: 20px;"></div>
-            <a href="#" class="text-secondary text-decoration-none small hover-white">Disponível</a>
-            <a href="#" class="text-secondary text-decoration-none small hover-white">Todos</a>
-            <a href="#" class="text-secondary text-decoration-none small hover-white">Pendentes</a>
-            <a href="#" class="text-secondary text-decoration-none small hover-white">Bloqueados</a>
+            <div class="d-flex align-items-center gap-3">
+                <!-- Links atualizados com o prefixo /amigos -->
+                <a th:href="@{/home/disponivel}" class="text-white text-decoration-none fw-bold d-flex align-items-center gap-2 nav-link-amigos">
+                    <i class="bi bi-people-fill"></i> Amigos
+                </a>
+                <div class="vr bg-secondary" style="height: 20px;"></div>
 
-            <!-- Alterado aqui: Adicionada a classe btn-add-friend e removido o style inline -->
-            <button class="btn btn-sm text-white fw-bold p-1 ms-1 shadow-sm btn-add-friend" style="font-size: 15px;">
-                Adicionar Amigo
-            </button>
+                <a th:href="@{/home/disponivel}" class="text-secondary text-decoration-none small hover-white">Disponível</a>
+                <a th:href="@{/home/todos}" class="text-secondary text-decoration-none small hover-white">Todos</a>
+                <a th:href="@{/home/pendentes}" class="text-secondary text-decoration-none small hover-white">Pendentes</a>
+                <a th:href="@{/home/bloqueados}" class="text-secondary text-decoration-none small hover-white">Bloqueados</a>
+
+                <a th:href="@{/home/adicionar}" class="btn btn-sm text-white fw-bold p-1 ms-1 shadow-sm btn-add-friend text-decoration-none" style="font-size: 15px;">
+                    Adicionar Amigo
+                </a>
+            </div>
         </div>
 
         <div class="d-flex gap-3 text-secondary fs-5">

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head}"></head>
+<body class="d-flex vh-100 vw-100 m-0 body_home">
+
+<div th:replace="~{fragments/nav-servers :: nav-servers}"></div>
+
+<div class="d-flex flex-column flex-grow-1">
+    <div th:replace="~{fragments/navbar-superior :: nav-top}"></div>
+    <div class="d-flex flex-grow-1 overflow-hidden">
+        <div th:replace="~{fragments/navbar-lateral :: nav-lateral}"></div>
+
+        <main class="flex-grow-1 d-flex flex-column align-items-start p-4 body_home overflow-auto">
+            <div class="friends-container w-100" style="max-width: 800px;">
+
+                <div class="friends-list-header mb-2 pb-2">
+                    PENDENTES — 1
+                </div>
+
+                <div class="friends-list">
+                    <!-- Linha de Solicitação Pendente -->
+                    <div class="friend-row d-flex justify-content-between align-items-center p-2 rounded">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="position-relative">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="width: 40px; height: 40px; background-color: #3ba55d;">
+                                    P
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="text-white fw-bold fs-6">Peppe</span>
+                                <span class="text-secondary small">Pedido de amizade recebido</span>
+                            </div>
+                        </div>
+
+                        <!-- Botões de Aceitar e Recusar -->
+                        <div class="friend-actions d-flex gap-2">
+                            <div class="action-btn action-btn-accept shadow-sm" title="Aceitar">
+                                <i class="bi bi-check-lg fs-5"></i>
+                            </div>
+                            <div class="action-btn action-btn-reject shadow-sm" title="Ignorar">
+                                <i class="bi bi-x-lg fs-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

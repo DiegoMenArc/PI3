@@ -40,7 +40,7 @@ public class LoginController {
 
         session.setAttribute("usuarioLogado", user);
 
-        return "redirect:/home";
+            return "redirect:/home/disponivel";
     }
 
     @GetMapping("/logout")
