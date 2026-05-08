@@ -1,15 +1,13 @@
-<div th:fragment="nav-lateral" class="d-flex flex-column flex-shrink-0"
-     style="width: 240px; background-color: #2f3136;">
+<div th:fragment="nav-lateral" class="bg-lateral d-flex flex-column flex-shrink-0"
+     style="width: 240px;">
 
-    <div class="p-2 shadow-sm">
-        <button class="btn w-100 text-start text-secondary small rounded"
-                style="background-color: #202225; border: none; font-size: 12px;">
-            Procurar ou iniciar uma conversa
-        </button>
+
+    <div class="p-2 shadow-sm" style="border-bottom: 1px solid #202225;">
+        <input type="text" id="busca" name="busca" class="search-input" placeholder="Procurar ou te uma conversa">
     </div>
 
     <div class="flex-grow-1 overflow-auto px-2 py-2">
-        <a href="#" class="d-flex align-items-center gap-3 text-white text-decoration-none p-2 rounded mb-3" style="background-color: #393c43;">
+        <a href="#" class="body_home d-flex align-items-center gap-3 text-white text-decoration-none p-2 rounded mb-3">
             <i class="bi bi-people-fill fs-5"></i>
             <span class="fw-bold small">AMIGOS</span>
         </a>
@@ -44,21 +42,4 @@
         </a>
     </div>
 
-    <div class="p-2 d-flex align-items-center justify-content-between" style="background-color: #292b2f;">
-        <div class="d-flex align-items-center gap-2">
-            <div class="position-relative">
-                <div class="rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold" style="width: 32px; height: 32px; background-color: #3ba55d;">P</div>
-                <span class="position-absolute bottom-0 end-0 p-1 border border-dark rounded-circle" style="background-color: #3ba55d;"></span>
-            </div>
-            <div class="lh-1">
-                <div class="fw-bold text-white" style="font-size: 13px;">Peppe</div>
-                <div class="text-secondary" style="font-size: 11px;">#0001</div>
-            </div>
-        </div>
-        <div class="d-flex gap-2 text-secondary">
-            <i class="bi bi-mic-fill hover-white cursor-pointer"></i>
-            <i class="bi bi-headphones hover-white cursor-pointer"></i>
-            <i class="bi bi-gear-fill hover-white cursor-pointer"></i>
-        </div>
-    </div>
 </div>

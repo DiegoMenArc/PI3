@@ -8,7 +8,13 @@
     --secondary-color: #6366f1; /* Indigo (Login) */
     --secondary-hover: #4f46e5;
     --chat-bg: #1e293b;
-    --chat-sidebar: #0f172a;
+    --chat-bg-p: #262F40;
+    --chat: #0f172a;
+    --chat-es: #10131B;
+
+    --input-bg: rgba(15, 23, 42, 0.9);
+    --input-border: rgba(255, 255, 255, 0.15);
+    --input-focus-border: #6366f1; /* Cor de foco Indigo */
 }
 
 * {
@@ -18,13 +24,76 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+.body_inicial {
     background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
     color: var(--text-main);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+body{
     overflow-x: hidden;
+}
+
+/* --- Efeitos para os links e ícones da Navbar --- */
+
+/* Transição suave para a classe hover-white que já estava no seu HTML */
+.hover-white {
+    transition: color 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
+}
+
+/* Efeito ao passar o mouse: Fica branco */
+.hover-white:hover {
+    color: #ffffff !important; /* !important garante que sobrescreva o text-secondary do Bootstrap */
+}
+
+/* Efeito ao clicar (pressionado): Fica ligeiramente cinza e "afunda" um pouco */
+.hover-white:active {
+    color: #cbd5e1 !important;
+    transform: scale(0.95);
+}
+
+/* Animação para o botão 'Amigos' principal também */
+.nav-link-amigos {
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+.nav-link-amigos:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+/* --- Efeitos para o Botão "Adicionar Amigo" --- */
+
+.btn-add-friend {
+    background-color: var(--primary-color);
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+/* Efeito hover: Verde um pouco mais escuro e aumenta a sombra */
+.btn-add-friend:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 10px rgba(45, 140, 78, 0.4) !important;
+}
+
+/* Efeito active (pressionado): Verde ainda mais escuro, tira a sombra e afunda */
+.btn-add-friend:active {
+    background-color: #1a542e;
+    transform: scale(0.95);
+    box-shadow: none !important;
+}
+
+.bg-lateral{
+    background-color: var(--chat-bg)
+}
+
+.bg-serve{
+    background-color: var(--chat)
+}
+
+.bg-escuro{
+    background-color: var(--chat-es)
 }
 
 /* Navbar / Cabeçalho */
@@ -84,6 +153,10 @@ main {
     margin: 0 auto;
     padding: 2rem 5%;
     gap: 4rem;
+}
+
+.body_home{
+    background-color: var(--chat-bg-p)
 }
 
 /* Coluna da Esquerda: Textos e Botões */
@@ -189,7 +262,7 @@ main {
 
 .chat-sidebar {
     width: 130px;
-    background-color: var(--chat-sidebar);
+    background-color: var(--chat);
     padding: 1.5rem 0.5rem;
     display: flex;
     flex-direction: column;
@@ -278,6 +351,66 @@ main {
     border-radius: 50%;
     z-index: 1;
 }
+
+/* --- Estilos para o Input de Busca da Barra Lateral --- */
+
+.search-input {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    background-color: var(--chat-es); /* Fundo mais escuro para contrastar */
+    border: 1px solid transparent; /* Sem borda inicialmente */
+    border-radius: 4px; /* Bordas levemente arredondadas */
+    color: var(--text-main);
+    font-size: 0.8rem;
+    outline: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Cor do texto descritivo (placeholder) */
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Efeito ao clicar no input (foco) */
+.search-input:focus {
+    background-color: var(--input-bg);
+    border-color: var(--input-focus-border); /* Borda índigo */
+    /* Removemos a sombra gigante que existe no input de login para não desalinhar a barra lateral */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.8rem;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
 
 /* Responsividade */
 @media (max-width: 900px) {

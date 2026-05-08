@@ -25,9 +25,7 @@ public class HomeController {
     public String Todos(HttpSession session, Model model){
         User logado = (User) session.getAttribute("usuarioLogado");
 
-        if (logado == null) {
-            return "redirect:/";
-        }
+
 
         model.addAttribute("nomeUsuario", logado.getNome());
         return "home/todosAmigos"; // Retorna o nome do template

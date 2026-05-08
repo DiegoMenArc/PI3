@@ -1,5 +1,5 @@
-<div th:fragment="nav-top" class="d-flex align-items-center px-3 flex-shrink-0 shadow-sm"
-     style="height: 48px; background-color: #36393f; border-bottom: 1px solid #202225;">
+<div th:fragment="nav-top" class="bg-serve p-2 d-flex align-items-center px-3 flex-shrink-0 shadow-sm"
+     style="border-bottom: 1px solid #202225;">
 
     <div style="width: 240px;" class="fw-bold text-white fs-6">
         Global Chat
@@ -7,7 +7,7 @@
 
     <div class="d-flex flex-grow-1 align-items-center justify-content-between px-2">
         <div class="d-flex align-items-center gap-3">
-            <a href="#" class="text-white text-decoration-none fw-bold d-flex align-items-center gap-2">
+            <a href="#" class="text-white text-decoration-none fw-bold d-flex align-items-center gap-2 nav-link-amigos">
                 <i class="bi bi-people-fill"></i> Amigos
             </a>
             <div class="vr bg-secondary" style="height: 20px;"></div>
@@ -16,14 +16,16 @@
             <a href="#" class="text-secondary text-decoration-none small hover-white">Pendentes</a>
             <a href="#" class="text-secondary text-decoration-none small hover-white">Bloqueados</a>
 
-            <button class="btn btn-sm text-white fw-bold px-3 ms-2 shadow-sm"
-                    style="background-color: #2d8c4e;">Adicionar Amigo</button>
+            <!-- Alterado aqui: Adicionada a classe btn-add-friend e removido o style inline -->
+            <button class="btn btn-sm text-white fw-bold p-1 ms-1 shadow-sm btn-add-friend" style="font-size: 15px;">
+                Adicionar Amigo
+            </button>
         </div>
 
         <div class="d-flex gap-3 text-secondary fs-5">
             <i class="bi bi-bell-fill hover-white cursor-pointer"></i>
             <i class="bi bi-chat-left-dots-fill hover-white cursor-pointer"></i>
-            <i class="bi bi-question-circle-fill hover-white cursor-pointer"></i>
+            <i class="bi bi-gear-fill hover-white cursor-pointer"></i>
         </div>
     </div>
 </div>
