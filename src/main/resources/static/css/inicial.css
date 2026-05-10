@@ -574,7 +574,83 @@ main {
     background-color: #da373c !important; /* Vermelho Discord */
     color: white !important;
 }
+/* ========================================= */
+/* --- ESTILOS DA PÁGINA DE CHAT DIRETO ---  */
+/* ========================================= */
 
+/* Área de Mensagens */
+.chat-messages-container {
+    scroll-behavior: smooth; /* Para a rolagem automática ser suave */
+}
+.chat-messages-container::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-messages-container::-webkit-scrollbar-track {
+    background-color: var(--chat-bg-p);
+}
+.chat-messages-container::-webkit-scrollbar-thumb {
+    background-color: #1a2233;
+    border-radius: 4px;
+}
+.chat-messages-container::-webkit-scrollbar-thumb:hover {
+    background-color: #111827;
+}
+
+.message-row {
+    transition: background-color 0.1s ease;
+}
+.message-row:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Container do Input de Chat */
+.chat-input-wrapper {
+    background-color: var(--secondary-color )!important;
+    transition: background-color 0.2s ease;
+    border-radius: 8px;
+}
+
+.chat-input-area{
+    background-color: var(--secondary-color );
+}
+
+/* O Campo de Texto */
+.chat-text-input {
+    background: transparent;
+    border: none;
+    color: var(
+
+    );
+    outline: none;
+    font-size: 1rem;
+    padding: 0.4rem 0;
+}
+
+.chat-text-input::placeholder {
+    color: #949ba4;
+}
+
+/* Ícone de Mais (Upload) */
+.upload-btn-wrapper i {
+    color: #b5bac1;
+    transition: color 0.2s;
+}
+.upload-btn-wrapper i:hover {
+    color: #dbdee1;
+}
+
+/* Botão de Enviar */
+.send-btn-wrapper i {
+    color: #4f545c; /* Desativado por padrão */
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+/* Classe adicionada via JS quando há texto */
+.send-btn-wrapper.active i {
+    color: var(--secondary-color); /* Fica Índigo */
+}
+.send-btn-wrapper.active:active i {
+    transform: scale(0.90);
+}
 
 /* Responsividade */
 @media (max-width: 900px) {

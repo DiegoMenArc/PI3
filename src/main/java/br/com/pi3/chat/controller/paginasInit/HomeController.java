@@ -27,18 +27,18 @@ public class HomeController {
         // 3. Direciona para o template correto baseado na URL
         switch (aba.toLowerCase()) {
             case "disponivel":
-                return "home/home";
+                return "pages/home/home";
             case "todos":
-                return "home/todosAmigos";
+                return "pages/home/todosAmigos";
             case "pendentes":
-                return "home/pendentes";
+                return "pages/home/pendentes";
             case "bloqueados":
-                return "home/bloqueados";
+                return "pages/home/bloqueados";
             case "adicionar":
-                return "home/addAmigos";
+                return "pages/home/addAmigos";
             default:
                 // Se o usuário digitar uma aba que não existe, joga ele para a principal
-                return "redirect:/amigos/disponivel";
+                return "redirect:pages/amigos/disponivel";
         }
     }
 }

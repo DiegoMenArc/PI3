@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body class="d-flex vh-100 vw-100 m-0 body_home">
+
+<!-- Barra de Servidores (Esquerda) -->
+<div th:replace="~{fragments/nav-servers :: nav-servers}"></div>
+
+<div class="d-flex flex-column flex-grow-1">
+
+    <!-- Nova Navbar Superior do Chat -->
+    <div th:replace="~{fragments/navbar-superior :: nav-top-chat}"></div>
+
+    <div class="d-flex flex-grow-1 overflow-hidden">
+
+        <!-- Barra Lateral (Contatos/Canais) -->
+        <div th:replace="~{fragments/navbar-lateral :: nav-lateral}"></div>
+
+        <!-- Área Central de Mensagens e Input -->
+        <main class="flex-grow-1 d-flex flex-column body_home position-relative w-100 h-100 overflow-hidden">
+
+            <!-- Histórico de Mensagens (Rolável, ocupando 100% da largura) -->
+            <div id="chatMessages" class="chat-messages-container flex-grow-1 overflow-auto p-3 p-md-4 d-flex flex-column gap-1 w-100">
+
+                <!-- Separador de Data -->
+                <div class="date-separator my-3 text-center position-relative">
+                    <span class="small fw-bold px-2">Hoje</span>
+                </div>
+
+                <!-- Mensagem Exemplo -->
+                <div class="message-row d-flex gap-3 p-2 rounded w-100">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0"
+                         style="width: 40px; height: 40px; background-color: #f472b6; cursor: pointer;">
+                        J
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-baseline gap-2">
+                            <span class="text-white fw-bold cursor-pointer hover-underline" th:text="${nomeAmigo} ?: 'jesutoyosi'">jesutoyosi</span>
+                            <span class="text-secondary" style="font-size: 0.7rem;">Hoje às 10:00</span>
+                        </div>
+                        <div class="text-light mt-1" style="font-size: 0.95rem; line-height: 1.4;">
+                            E aí, tudo bem? O chat agora está pegando a tela toda!
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Área de Input (Fixa no rodapé do chat, esticada 100%) -->
+            <div class="chat-input-area p-3 p-md-4 flex-shrink-0 pt-0 w-100">
+                <div class="chat-input-wrapper d-flex align-items-center px-3 py-2 rounded-3 shadow-sm w-100">
+                    <!-- Botão de Upload -->
+                    <div class="upload-btn-wrapper me-3">
+                        <i class="bi bi-plus-circle-fill fs-5 cursor-pointer" title="Enviar arquivo"></i>
+                    </div>
+
+                    <!-- Campo de Texto -->
+                    <input type="text" id="chatInput" class="chat-text-input flex-grow-1" th:placeholder="'Conversar em @' + (${nomeAmigo} ?: 'jesutoyosi')" autocomplete="off">
+
+                    <!-- Ícones extras e Botão de Enviar -->
+                    <div class="d-flex align-items-center gap-3 ms-3 text-secondary fs-5">
+                        <i class="bi bi-gift-fill cursor-pointer hover-white d-none d-md-block" title="Presentear"></i>
+                        <i class="bi bi-filetype-gif cursor-pointer hover-white" title="Abrir seletor de GIF"></i>
+                        <i class="bi bi-emoji-smile-fill cursor-pointer hover-white" title="Abrir seletor de emoji"></i>
+
+                        <!-- Divisor vertical -->
+                        <div class="vr bg-secondary opacity-25" style="height: 24px; width: 2px;"></div>
+
+                        <!-- Botão de Enviar -->
+                        <div id="btnEnviarMsg" class="send-btn-wrapper cursor-pointer" title="Enviar Mensagem">
+                            <i class="bi bi-send-fill fs-5"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatInput = document.getElementById('chatInput');
+        const btnEnviarMsg = document.getElementById('btnEnviarMsg');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Função para formatar a hora atual (ex: 14:30)
+        function getHoraAtual() {
+            const agora = new Date();
+            return agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Função que envia a mensagem e cria o HTML na tela
+        function enviarMensagem() {
+            const texto = chatInput.value.trim();
+
+            if (texto === "") return; // Não envia se estiver vazio
+
+            // Nome do usuário logado (Você pode puxar isso do Thymeleaf em uma variável global)
+            const nomeUsuario = "Você";
+            const hora = getHoraAtual();
+
+            // Criar o HTML da nova mensagem
+            const novaMensagemHTML = `
+                <div class="message-row d-flex gap-3 p-2 rounded">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0"
+                         style="width: 40px; height: 40px; background-color: #6366f1; cursor: pointer;">
+                        V
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <span class="text-white fw-bold cursor-pointer hover-underline">${nomeUsuario}</span>
+                            <span class="text-secondary" style="font-size: 0.7rem;">Hoje às ${hora}</span>
+                        </div>
+                        <div class="text-light mt-1" style="font-size: 0.95rem; line-height: 1.4;">
+                            ${texto}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Adiciona a mensagem no final do chat
+            chatMessages.insertAdjacentHTML('beforeend', novaMensagemHTML);
+
+            // Limpa o input
+            chatInput.value = "";
+            btnEnviarMsg.classList.remove('active');
+
+            // Rola o chat automaticamente para o final
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Mudar cor do botão de enviar quando há texto
+        chatInput.addEventListener('input', function() {
+            if (this.value.trim().length > 0) {
+                btnEnviarMsg.classList.add('active');
+            } else {
+                btnEnviarMsg.classList.remove('active');
+            }
+        });
+
+        // Enviar pelo Clique no Ícone
+        btnEnviarMsg.addEventListener('click', enviarMensagem);
+
+        // Enviar pelo Enter no Teclado
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Evita recarregar a tela ou quebrar a linha
+                enviarMensagem();
+            }
+        });
+    });
+</script>
+</body>
+</html>

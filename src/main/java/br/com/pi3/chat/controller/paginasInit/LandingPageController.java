@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class InicialController {
+public class LandingPageController {
 
     @GetMapping("/")
     public String inicial() {
-        return "Inicial"; // nome EXATO do arquivo
+        return "pages/Inicial"; // nome EXATO do arquivo
     }
 
 

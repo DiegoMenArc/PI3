@@ -22,7 +22,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String exibirLogin(){
-        return "Login";
+        return "pages/Login";
     }
 
     @PostMapping("/login")
@@ -35,7 +35,7 @@ public class LoginController {
 
         if (user == null || !user.getSenha().equals(senha)) {
             model.addAttribute("erro", "Email ou senha inválidos");
-            return "Login";
+            return "pages/Login";
         }
 
         session.setAttribute("usuarioLogado", user);

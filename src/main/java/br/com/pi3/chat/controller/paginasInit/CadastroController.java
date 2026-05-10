@@ -21,7 +21,7 @@ public class CadastroController {
 
     @GetMapping("/cadastro")
     public String exibirForm() {
-        return "Cadastro";
+        return "Pages/Cadastro";
     }
 
     @GetMapping("/deletarConta")
