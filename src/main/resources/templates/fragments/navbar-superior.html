@@ -1,3 +1,4 @@
+<!-- Fragmento: nav-top -->
 <div th:fragment="nav-top" class="bg-serve p-2 d-flex align-items-center px-3 flex-shrink-0 shadow-sm"
      style="border-bottom: 1px solid #202225;">
 
@@ -25,10 +26,21 @@
             </div>
         </div>
 
-        <div class="d-flex gap-3 text-secondary fs-5">
+        <div class="d-flex gap-3 text-secondary fs-5 align-items-center">
             <i class="bi bi-bell-fill hover-white cursor-pointer"></i>
             <i class="bi bi-chat-left-dots-fill hover-white cursor-pointer"></i>
-            <i class="bi bi-gear-fill hover-white cursor-pointer"></i>
+
+            <!-- Menu de Configurações (Dropdown) -->
+            <div class="dropdown d-flex align-items-center">
+                <i class="bi bi-gear-fill hover-white cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false" title="Configurações"></i>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg" style="background-color: var(--chat-es); border: 1px solid rgba(255,255,255,0.1); margin-top: 10px;">
+                    <li>
+                        <a class="dropdown-item text-danger d-flex align-items-center gap-2 fw-bold" th:href="@{/logout}">
+                            <i class="bi bi-box-arrow-right"></i> Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -37,27 +49,48 @@
 <div th:fragment="nav-top-chat" class="bg-serve p-2 d-flex align-items-center px-3 flex-shrink-0 shadow-sm"
      style="border-bottom: 1px solid #202225; height: 48px;">
 
-    <!-- Lado Esquerdo: Nome do Amigo e Status -->
-    <div class="d-flex align-items-center gap-2">
-        <i class="bi bi-at text-secondary fs-4"></i>
-        <!-- O nome do amigo virá do Controller. Usamos um valor padrão "jesutoyosi" para visualização -->
-        <span class="text-white fw-bold fs-6" th:text="${nomeAmigo} ?: 'jesutoyosi'">jesutoyosi</span>
-
-        <!-- Bolinha de status online -->
-        <span class="rounded-circle ms-1" style="width: 10px; height: 10px; background-color: #23a559;"></span>
+    <!-- 1. Mantém o Global Chat com a mesma largura da barra lateral (240px) -->
+    <div style="width: 240px;" class="fw-bold text-white fs-6">
+        Global Chat
     </div>
 
-    <!-- Lado Direito: Ícones de Ação -->
-    <div class="ms-auto d-flex gap-3 text-secondary fs-5 align-items-center">
-        <i class="bi bi-telephone-fill hover-white cursor-pointer" title="Iniciar Chamada de Voz"></i>
-        <i class="bi bi-camera-video-fill hover-white cursor-pointer" title="Iniciar Chamada de Vídeo"></i>
-        <i class="bi bi-pin-angle-fill hover-white cursor-pointer" title="Mensagens Fixadas"></i>
-        <i class="bi bi-person-plus-fill hover-white cursor-pointer" title="Adicionar Amigos ao Chat"></i>
+    <!-- 2. Área principal flexível (Ocupa o resto do espaço) -->
+    <div class="d-flex flex-grow-1 align-items-center justify-content-between px-2">
 
-        <!-- Barra vertical de separação -->
-        <div class="vr bg-secondary mx-1" style="height: 20px;"></div>
+        <!-- Lado Esquerdo: Nome do Amigo e Status -->
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-at text-secondary fs-4"></i>
+            <span class="text-white fw-bold fs-6" th:text="${nomeAmigo} ?: 'jesutoyosi'">jesutoyosi</span>
+            <span class="rounded-circle ms-1" style="width: 10px; height: 10px; background-color: #23a559;"></span>
+        </div>
 
-        <i class="bi bi-inbox-fill hover-white cursor-pointer" title="Caixa de Entrada"></i>
-        <i class="bi bi-question-circle-fill hover-white cursor-pointer" title="Ajuda"></i>
+        <!-- Lado Direito: Ícones de Ação específicos do Chat -->
+        <div class="d-flex gap-3 text-secondary fs-5 align-items-center">
+            <i class="bi bi-telephone-fill hover-white cursor-pointer" title="Iniciar Chamada de Voz"></i>
+            <i class="bi bi-camera-video-fill hover-white cursor-pointer" title="Iniciar Chamada de Vídeo"></i>
+            <i class="bi bi-pin-angle-fill hover-white cursor-pointer" title="Mensagens Fixadas"></i>
+            <i class="bi bi-person-plus-fill hover-white cursor-pointer" title="Adicionar Amigos ao Chat"></i>
+
+            <!-- Barra vertical de separação -->
+            <div class="vr bg-secondary mx-1" style="height: 20px;"></div>
+
+            <i class="bi bi-inbox-fill hover-white cursor-pointer" title="Caixa de Entrada"></i>
+            <i class="bi bi-question-circle-fill hover-white cursor-pointer" title="Ajuda"></i>
+
+            <!-- Menu de Configurações (Dropdown com botão Sair) -->
+            <div class="dropdown d-flex align-items-center">
+                <i class="bi bi-gear-fill hover-white cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false" title="Configurações"></i>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg" style="background-color: var(--chat-es); border: 1px solid rgba(255,255,255,0.1); margin-top: 10px;">
+                    <li>
+                        <!-- O th:href já aponta para a rota padrão de logout do Spring Security/seu sistema -->
+                        <a class="dropdown-item text-danger d-flex align-items-center gap-2 fw-bold" th:href="@{/logout}">
+                            <i class="bi bi-box-arrow-right"></i> Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
     </div>
 </div>

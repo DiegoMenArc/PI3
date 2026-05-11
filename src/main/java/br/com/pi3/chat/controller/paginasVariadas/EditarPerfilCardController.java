@@ -8,6 +8,6 @@ public class EditarPerfilCardController {
 
     @GetMapping("/EditarPerfilCard")
     public String EditarPerfilCard(){
-        return "EditarPerfilCard";
+        return "pages/perfil/EditarPerfilCard";
     }
 }

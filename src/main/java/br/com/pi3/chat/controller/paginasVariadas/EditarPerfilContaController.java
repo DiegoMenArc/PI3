@@ -29,7 +29,7 @@ public class EditarPerfilContaController {
         model.addAttribute("nomeUsuario", logado.getNome());
         model.addAttribute("emailUsuario", logado.getEmail());
 
-        return "EditarPerfilConta";
+        return "pages/perfil/EditarPerfilConta";
     }
 
     @PostMapping("/atualizarPerfil")

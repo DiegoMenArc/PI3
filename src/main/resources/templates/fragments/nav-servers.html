@@ -1,12 +1,39 @@
 <div th:fragment="nav-servers" class="bg-escuro d-flex flex-column align-items-center py-3 flex-shrink-0"
      style="width: 72px; height: 100vh; z-index: 10;">
 
+    <!-- Estilos do Botão Lateral (Estilo Discord) -->
+    <style>
+        .btn-server {
+            /* Estado inicial: Redondo e cor Indigo padrão */
+            background-color: var(--secondary-color);
+            border-radius: 70%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-    <div class="d-flex align-items-center justify-content-center cursor-pointer shadow-sm"
-         style="width: 48px; height: 48px; background-color: #5865F2; border-radius: 16px;">
+        .btn-server:hover {
+            /* Ao passar o mouse: Fica quadrado arredondado e cor Indigo mais clara/viva */
+            background-color: var(--secondary-hover);
+            border-radius: 16px;
+            transform: translateY(-2px); /* Dá uma leve levantada */
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); /* Adiciona um brilho */
+        }
 
-        <div class="d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px;">P</div>
+        .btn-server:active {
+            /* Ao clicar: Afunda um pouco */
+            transform: scale(0.92);
+            box-shadow: none;
+        }
+    </style>
 
+    <!-- Botão 'P' -->
+    <!-- Limpamos os estilos inline e aplicamos a classe btn-server -->
+    <div class="btn-server d-flex align-items-center justify-content-center shadow-sm"
+         style="width: 48px; height: 48px;"
+         data-bs-toggle="modal" data-bs-target="#modalPerfil">
+        <div class="d-flex align-items-center justify-content-center fw-bold text-white fs-5" style="width: 32px; height: 32px;">
+            P
+        </div>
     </div>
 
     <hr class="text-secondary w-50 my-3">

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Começo do Fragmento -->
+<div th:fragment="modal-perfil">
+  <style>
+    /* --- Efeito de Blur no Fundo --- */
+    .modal-backdrop {
+      background-color: rgba(15, 23, 42, 0.6) !important;
+    }
+    .modal-backdrop.show {
+      opacity: 1 !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* --- Hover dos Botões do Modal --- */
+
+    /* Botão Mudar Avatar (Usa a cor secondary / Indigo) */
+    .btn-modal-avatar {
+      background-color: var(--secondary-color);
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+    .btn-modal-avatar:hover {
+      background-color: var(--secondary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Botão Remover Avatar (Transparente com hover cinza) */
+    .btn-modal-remover {
+      background-color: transparent;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .btn-modal-remover:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff !important;
+    }
+
+    /* Botão Cancelar (Apenas um sublinhado elegante) */
+    .btn-modal-cancelar {
+      background-color: transparent;
+      transition: color 0.2s ease;
+    }
+    .btn-modal-cancelar:hover {
+      color: #ffffff !important;
+      text-decoration: underline;
+    }
+
+    /* Botão Salvar Alterações (Usa a cor primary / Verde Esmeralda) */
+    .btn-modal-salvar {
+      background-color: var(--primary-color);
+      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    }
+    .btn-modal-salvar:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .btn-modal-salvar:active {
+      transform: scale(0.95);
+      box-shadow: none;
+    }
+  </style>
+
+  <!-- Estrutura do Modal -->
+  <div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="modalPerfilLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--chat-bg); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1);">
+
+        <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <h5 class="modal-title fw-bold" id="modalPerfilLabel">Configurações de Perfil</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <form th:action="@{/perfil/salvar}" method="post" enctype="multipart/form-data">
+          <div class="modal-body p-4">
+            <div class="row">
+
+              <!-- COLUNA DE EDIÇÃO -->
+              <div class="col-md-7 pe-md-4 mb-4 mb-md-0">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.5px;">Perfil Principal</h6>
+                <div style="height: 1px; background-color: rgba(255,255,255,0.05); margin-bottom: 1.5rem;"></div>
+
+                <div class="mb-4">
+                  <label for="usernameInput" class="form-label fw-bold text-uppercase" style="color: var(--text-muted); font-size: 0.75rem;">Nome Exibido</label>
+                  <input type="text" class="form-control" id="usernameInput" name="username"
+                         th:value="${usuario != null ? usuario.nome : 'Adaylson'}"
+                         style="background-color: var(--chat-es); border: 1px solid rgba(0, 0, 0, 0.2); color: var(--text-main); padding: 0.6rem; transition: border-color 0.3s ease;">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-bold text-uppercase" style="color: var(--text-muted); font-size: 0.75rem;">Avatar</label>
+                  <div class="d-flex gap-2">
+
+                    <!-- Botão Mudar Avatar (Classe aplicada) -->
+                    <label for="avatarUpload" class="btn text-white btn-modal-avatar" style="font-size: 0.9rem; cursor: pointer;">
+                      Mudar avatar
+                    </label>
+                    <input type="file" id="avatarUpload" name="avatarFile" class="d-none" accept="image/*" onchange="previewAvatar(event)">
+
+                    <!-- Botão Remover Avatar (Classe aplicada) -->
+                    <button type="button" class="btn btn-modal-remover" style="color: var(--text-main); border: 1px solid rgba(255,255,255,0.2); font-size: 0.9rem;">
+                      Remover avatar
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- COLUNA DE PRÉVIA -->
+              <div class="col-md-5">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.5px;">Prévia</h6>
+
+                <div class="card" style="background-color: var(--chat-es); border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                  <div style="height: 60px; background-color: var(--secondary-color);"></div>
+
+                  <div class="card-body position-relative pt-0">
+                    <div class="position-absolute" style="top: -30px; left: 16px;">
+                      <img id="avatarPreviewImage" th:src="${usuario != null and usuario.avatarUrl != null ? usuario.avatarUrl : 'https://placehold.co/90x90'}"
+                           alt="Avatar" style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--chat-es); background-color: var(--chat-es); object-fit: cover;">
+                      <div class="status-dot" style="position: absolute; bottom: 5px; right: 5px; width: 16px; height: 16px; background-color: #23a559; border-radius: 50%; border: 3px solid var(--chat-es);"></div>
+                    </div>
+
+                    <div style="margin-top: 60px; margin-bottom: 10px;">
+                      <div id="usernamePreviewText" class="fw-bold text-white fs-5" th:text="${usuario != null ? usuario.nome : 'Adaylson'}">Adaylson</div>
+                      <div class="text-muted" style="font-size: 0.85rem;" th:text="${usuario != null ? '@' + usuario.username : 'adaylson'}">adaylson</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="modal-footer" style="border-top: 1px solid rgba(255,255,255,0.05); background-color: var(--chat-es);">
+
+            <!-- Botão Cancelar (Classe aplicada) -->
+            <button type="button" class="btn text-white btn-modal-cancelar" data-bs-dismiss="modal" style="font-size: 0.9rem;">Cancelar</button>
+
+            <!-- Botão Salvar Alterações (Classe aplicada) -->
+            <button type="submit" class="btn text-white px-4 btn-modal-salvar" style="font-size: 0.9rem; font-weight: 500;">Salvar Alterações</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script embutido no fragmento -->
+  <script>
+    const usernameInput = document.getElementById('usernameInput');
+    const usernamePreviewText = document.getElementById('usernamePreviewText');
+
+    if (usernameInput && usernamePreviewText) {
+      usernameInput.addEventListener('input', function() {
+        usernamePreviewText.textContent = this.value || 'Nome de Usuário';
+      });
+
+      // Adiciona estilo de foco da borda via JS (opcional, para dar match com seu input indigo)
+      usernameInput.addEventListener('focus', function() {
+        this.style.borderColor = 'var(--input-focus-border)';
+      });
+      usernameInput.addEventListener('blur', function() {
+        this.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+      });
+    }
+
+    function previewAvatar(event) {
+      const input = event.target;
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('avatarPreviewImage').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script>
+
+</div>
+<!-- Fim do Fragmento -->
+
+</body>
+</html>

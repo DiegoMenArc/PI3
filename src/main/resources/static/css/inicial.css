@@ -610,9 +610,7 @@ main {
     border-radius: 8px;
 }
 
-.chat-input-area{
-    background-color: var(--secondary-color );
-}
+
 
 /* O Campo de Texto */
 .chat-text-input {

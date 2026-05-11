@@ -1,5 +1,29 @@
 <div th:fragment="nav-lateral" class="bg-lateral d-flex flex-column flex-shrink-0" style="width: 240px;">
 
+    <!-- Bloco de estilo adicionado apenas para o efeito de Hover -->
+    <style>
+        /* Hover para o botão AMIGOS (usando a classe body_home que já está nele) */
+        .bg-lateral .body_home {
+            transition: background-color 0.2s ease;
+        }
+        .bg-lateral .body_home:hover {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            cursor: pointer;
+        }
+
+        /* Hover para os links dos chats (usando a classe hover-bg que já está neles) */
+        .hover-bg {
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .hover-bg:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+        /* Garante que o texto fique branco ao passar o mouse */
+        .hover-bg:hover, .hover-bg:hover span {
+            color: #ffffff !important;
+        }
+    </style>
+
     <!-- Barra de Busca -->
     <div class="p-2 shadow-sm" style="border-bottom: 1px solid #202225;">
         <input type="text" id="busca" name="busca" class="search-input" placeholder="Procurar ou iniciar uma conversa">
