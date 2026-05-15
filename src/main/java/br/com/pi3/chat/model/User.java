@@ -1,7 +1,6 @@
 package br.com.pi3.chat.model;
 
 import br.com.pi3.chat.model.rooms.Room;
-import br.com.pi3.chat.model.rooms.Servidor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
