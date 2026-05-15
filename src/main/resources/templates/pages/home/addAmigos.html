@@ -26,9 +26,11 @@
                 <p class="add-friend-subtitle">Você pode adicionar amigos com o nome de usuário deles.</p>
 
                 <!-- Wrapper do Input e Botão -->
+                <form th:action="@{/addAmigo/nome}" method="post" >
                 <div class="add-friend-input-wrapper shadow-sm">
                     <input
                             type="text"
+                            name="PessoaPesquisada"
                             class="add-friend-input"
                             id="inputAmigo"
                             placeholder="Você pode adicionar amigos com o nome de usuário deles."
@@ -38,6 +40,7 @@
                         Enviar pedido de amizade
                     </button>
                 </div>
+                </form>
 
                 <!-- Mensagens de Feedback (Escondidas por padrão) -->
                 <p class="add-friend-success mt-3 text-success small" id="mensagemSucesso" style="display: none;">
