@@ -1,4 +1,4 @@
-package br.com.pi3.chat.model.rooms;
+package br.com.pi3.chat.model.relacoes;
 
 import br.com.pi3.chat.model.User;
 import jakarta.persistence.*;

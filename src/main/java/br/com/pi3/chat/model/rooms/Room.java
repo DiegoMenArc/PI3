@@ -1,12 +1,15 @@
 package br.com.pi3.chat.model.rooms;
 
 import br.com.pi3.chat.model.User;
+import br.com.pi3.chat.model.UserRoom;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -18,13 +21,11 @@ public abstract class Room {
     private Long id;
     private String nome;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "chat_room_users",
-            joinColumns = @JoinColumn(name = "chat_room_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<User> users = new ArrayList<>();
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserRoom> userRooms = new ArrayList<>();
+
+    @ManyToMany
+    private Set<User> users = new HashSet<>();
 
     @ManyToOne
     private User admin;

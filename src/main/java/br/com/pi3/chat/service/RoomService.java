@@ -1,6 +1,6 @@
 package br.com.pi3.chat.service;
 
-import br.com.pi3.chat.dto.mensagem.MensagemResponseDTO;
+import br.com.pi3.chat.DTO.mensagem.MensagemResponseDTO;
 import br.com.pi3.chat.model.Mensagem;
 import br.com.pi3.chat.model.User;
 import br.com.pi3.chat.model.rooms.Room;
@@ -10,6 +10,8 @@ import br.com.pi3.chat.repository.JpaRepositoryUser;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -48,4 +50,7 @@ public class RoomService {
         return this.buscarRoom(id);
     }
 
+    public List<Room> listarRoomsPorUsuario(Long userId) { return this.repo.findAllById(Collections.singleton(userId)); }
+
+    public List<Room> listarTodasRooms() { return this.repo.findAll(); }
 }

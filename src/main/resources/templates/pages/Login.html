@@ -11,7 +11,7 @@
 
 <header>
   <div class="logo-container">
-    <a href="/static" style="text-decoration: none;">
+    <a th:href="@{/}" style="text-decoration: none;">
       <div class="logo-icon">GC</div>
     </a>
   </div>
@@ -43,7 +43,7 @@
     </form>
 
     <div class="auth-footer">
-      <p>Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+      <p>Ainda não tem uma conta? <a th:href="@{/cadastro}">Cadastre-se</a></p>
     </div>
   </div>
 </main>

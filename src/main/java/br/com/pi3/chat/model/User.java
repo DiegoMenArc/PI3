@@ -7,6 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Entity // Indica que essa classe é uma entidade do banco de dados
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,9 +28,15 @@ public class User{
     @Enumerated(EnumType.STRING) // Salva o enum como String no banco h2
     private Role role;
 
-    @ManyToOne  // ou @ManyToMany
-    @JoinColumn(name = "chat_room_id")
-    private Room chatRoom;  // ou Canal
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserRoom> userRooms = new ArrayList<>();
+
+    @ManyToOne
+    public Set<Room> getRooms() {
+        return userRooms.stream()
+                .map(ur -> ur.getRoom())
+                .collect(Collectors.toSet());
+    }
 
     // getters
 
@@ -48,6 +60,8 @@ public class User{
         return senha;
     }
 
+    public String getUsername() { return username; }
+
     //setters
 
     public void setEmail(String email) {
@@ -69,5 +83,7 @@ public class User{
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public void setUsername(String username) { this.username = username; }
 }
 

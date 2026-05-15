@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro - Global Chat</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/cadastro.css">
 </head>
 <body class="auth-page">
 
 <header>
   <div class="logo-container">
-    <a href="/static" style="text-decoration: none;">
+    <a th:href="@{/}" style="text-decoration: none;">
       <div class="logo-icon">GC</div>
     </a>
   </div>
@@ -54,7 +54,7 @@
     </form>
 
     <div class="auth-footer">
-      <p>Já possui uma conta? <a href="login.html">Faça login</a></p>
+      <p>Já possui uma conta? <a th:href="@{/login}">Faça login</a> </p>
     </div>
   </div>
 </main>

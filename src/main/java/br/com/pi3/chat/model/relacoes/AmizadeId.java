@@ -1,4 +1,4 @@
-package br.com.pi3.chat.model.rooms;
+package br.com.pi3.chat.model.relacoes;
 
 import java.io.Serializable;
 import java.util.Objects;

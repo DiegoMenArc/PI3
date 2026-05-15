@@ -1,4 +1,4 @@
-package br.com.pi3.chat.dto.mensagem;
+package br.com.pi3.chat.DTO.mensagem;
 
 import br.com.pi3.chat.model.Mensagem;
 import br.com.pi3.chat.model.User;
@@ -29,23 +29,7 @@ public class MensagemRequestDTO {
         this.conteudo = conteudo;
     }
 
-    private JpaRepositoryMensagem mensagemRepository;
-    private JpaRepositoryUser userRepository;
-    private JpaRepositoryRoom chatRepository;
+    public void setChatId(Long chatId) { this.chatId = chatId; }
 
-    public MensagemResponseDTO enviarMensagem(MensagemRequestDTO dto) {
-
-        Room chat = (Room) chatRepository.findById(dto.getChatId()).orElseThrow();
-        User user = (User) userRepository.findById(dto.getUserId()).orElseThrow();
-
-        Mensagem msg = new Mensagem();
-        msg.setConteudo(dto.getConteudo());
-        msg.setAutor(user);
-        msg.setChat(chat);
-
-        mensagemRepository.save(msg);
-
-        return new MensagemResponseDTO(msg);
-    }
-
+    public void setUserId(Long userId) { this.userId = userId; }
 }

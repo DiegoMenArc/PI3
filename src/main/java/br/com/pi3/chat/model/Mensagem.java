@@ -1,15 +1,13 @@
 package br.com.pi3.chat.model;
 
-import br.com.pi3.chat.model.rooms.Canal;
 import br.com.pi3.chat.model.rooms.Inbox;
 import br.com.pi3.chat.model.rooms.MensagemDireta;
 import br.com.pi3.chat.model.rooms.Room;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @AllArgsConstructor
@@ -28,13 +26,13 @@ public class Mensagem {
     Room chat;
 
     @Column(name = "data_envio")
-    private LocalDateTime dataEnvio;  // ← CAMPO FALTANDO!
+    private Instant dataEnvio;  // ← CAMPO FALTANDO!
 
     private boolean editada = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "canal_id")
-    private Canal canal;
+    private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mensagem_direta_id")
@@ -78,8 +76,13 @@ public class Mensagem {
 
     public void setChat(Inbox inbox) {}
 
-    public Canal getCanal() { return canal; }
-    public void setCanal(Canal canal) { this.canal = canal; }
+    public Instant getDataEnvio() { return dataEnvio;}
+    public void setDataEnvio(Instant dataEnvio) { this.dataEnvio = dataEnvio; }
+
+    public void setEditada(boolean editada) { this.editada = editada; }
+
+    public Room getCanal() { return room; }
+    public void setCanal(Room room) { this.room = room; }
 
     public MensagemDireta getMensagemDireta() { return mensagemDireta; }
     public void setMensagemDireta(MensagemDireta mensagemDireta) {
