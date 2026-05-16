@@ -17,6 +17,7 @@ public class HomeController {
 
         // 1. Verificação única de sessão para todas as abas
         User logado = (User) session.getAttribute("usuarioLogado");
+
         if (logado == null) {
             return "redirect:/";
         }
