@@ -25,10 +25,13 @@ public class TesteRunner implements CommandLineRunner {
         novoUsuario.setEmail("teste@teste");
         novoUsuario.setSenha("1234");
 
-        // 2. Chamamos o método do Controller direto pelo Java
-        User usuarioSalvo = userController.criarUsuario(novoUsuario);
+        // 1. Criamos um usuário de mentira
+        User novoUsuario2 = new User();
+        novoUsuario2.setNome("teste2");
+        novoUsuario2.setEmail("teste2@teste");
+        novoUsuario2.setSenha("1234");
 
-        // 3. Imprimimos para ver se deu certo
-        System.out.println("Deu certo! Usuário salvo com ID: " + usuarioSalvo.getId());
+        userController.criarUsuario(novoUsuario);
+        userController.criarUsuario(novoUsuario2);
     }
 }
